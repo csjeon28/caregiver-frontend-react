@@ -5,7 +5,7 @@ function userLogin(loginInfo, userType) {
     return dispatch => {
         dispatch(action.userLoginLoading())
         // change to heroku after dploying
-        const url = `https://localhost:3001/${userType}/login`
+        const url = `http://localhost:3001/${userType}/login`
         axios
             .post(url, loginInfo, {
                 'Content-Type': 'application/json',
