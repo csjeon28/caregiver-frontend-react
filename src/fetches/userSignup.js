@@ -3,7 +3,7 @@ import * as action from '../actions/userActions'
 
 function userSignup(loginInfo, userType) {
     return dispatch => {
-        const url = `https://localhost:3001/${userType}s`;
+        const url = `http://localhost:3001/${userType}s`;
         // fetch(url, {
         axios
             .post(url, loginInfo, {
@@ -11,7 +11,7 @@ function userSignup(loginInfo, userType) {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             })
-            .then(resp => resp.json())
+            // .then(resp => resp.json())
             .then(data => {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('usertype', userType)
