@@ -5,7 +5,7 @@ function autoLogin(userType) {
     return dispatch => {
         dispatch(action.userLoginLoading())
         // change url to api when deployed to heroku
-        const api_url = `https://localhost:3001/${userType}/auto_login`
+        const api_url = `http://localhost:3001/${userType}/auto_login`
         axios
             .get(api_url, {
                 'Content-Type': 'application/json',
