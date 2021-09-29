@@ -9,7 +9,7 @@ const SideDashboard = ({ userType }) => {
         personalSideDashboard = (
             <div>
                 <NavLink exact to='/caregiver-dashboard' activeClassName='selected'>
-                    Home
+                    My CareGiver Dashboard
                 </NavLink>
                 <NavLink exact to='/jobs' activeClassName='selected'>
                     My Jobs
@@ -22,7 +22,7 @@ const SideDashboard = ({ userType }) => {
         personalSideDashboard = (
             <div>
                 <NavLink to='/parent-dashboard' activeClassName='selected'>
-                    My Dashboard
+                    My Parent/Guardian Dashboard
                 </NavLink>
                 <NavLink to='/new-schedule' activeClassName='selected'>
                     New Job Schedule
