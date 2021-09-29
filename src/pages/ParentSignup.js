@@ -54,7 +54,7 @@ const ParentSignup = ({ userSignup, userData }) => {
 
     let personalizedSignup
     if (userData.token) {
-        personalizedSignup = <Redirect to='/dashboard' />
+        personalizedSignup = <Redirect to='/parent-dashboard' />
     } else {
         personalizedSignup = (
             <div>
