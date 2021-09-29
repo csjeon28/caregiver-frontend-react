@@ -8,6 +8,8 @@ import Login from './components/Login'
 import SideDashboard from './components//SideDashboard'
 import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
+import CaregiverDashboard from './pages/CaregiverDashboard'
+import ParentDashboard from './pages/ParentDashboard'
 
 const App = ({ autoLogin, userData }) => {
   const usertype = localStorage.getItem('usertype')
@@ -19,7 +21,7 @@ const App = ({ autoLogin, userData }) => {
     }
   }, [autoLogin, usertype, usertoken])
 
-  const caregiverHome = (usertype === 'caregiver') ? <Redirect to='/home' /> : <Redirect to='/dashboard' />
+  const caregiverHome = (usertype === 'caregiver') ? <Redirect to='/caregiver-dashboard' /> : <Redirect to='/parent-dashboard' />
 
   return (
     <div className="App">
@@ -33,6 +35,8 @@ const App = ({ autoLogin, userData }) => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/caregiver/signup' component={CaregiverSignup} />
           <Route exact path='/parent/signup' component={ParentSignup} />
+          <Route exact path='/caregiver-dashboard' component={CaregiverDashboard} />
+          <Route exact path='/parent-dashboard' component={ParentDashboard} />
         </Switch>
       </div>
     </div>
