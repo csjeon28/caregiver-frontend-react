@@ -8,7 +8,7 @@ const SideDashboard = ({ userType }) => {
     if (userType === 'caregiver') {
         personalSideDashboard = (
             <div>
-                <NavLink exact to='/home' activeClassName='selected'>
+                <NavLink exact to='/caregiver-dashboard' activeClassName='selected'>
                     Home
                 </NavLink>
                 <NavLink exact to='/jobs' activeClassName='selected'>
@@ -21,7 +21,7 @@ const SideDashboard = ({ userType }) => {
     if (userType === 'parent') {
         personalSideDashboard = (
             <div>
-                <NavLink to='/dashboard' activeClassName='selected'>
+                <NavLink to='/parent-dashboard' activeClassName='selected'>
                     My Dashboard
                 </NavLink>
                 <NavLink to='/new-schedule' activeClassName='selected'>
