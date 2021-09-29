@@ -59,7 +59,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
 
     let personalizedSignup;
     if (userData.token) {
-        personalizedSignup = <Redirect to='/home' />
+        personalizedSignup = <Redirect to='/caregiver-dashboard' />
     } else {
         personalizedSignup = (
             <div>
