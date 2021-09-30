@@ -11,9 +11,7 @@ const parentData = (state = initialState, action) => {
         case 'GET_PARENTS':
             return { ...state, loading: false, parents: action.payload }
         case 'GET_PARENTS_FAIL':
-            return {
-                ...state, loading: false, error: action.payload, parents: '',
-            }
+            return { ...state, loading: false, error: action.payload, parents: '' }
         default:
             return state
     }
