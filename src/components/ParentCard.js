@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 const ParentCard = ({ parent }) => (
     <section>
         <div>
-            <img src={parent.profile_image ? parent.profile_image : defaultImg} alt={parent.first_name && parent.last_name} />
+            {/* //default image can be added later instead of null */}
+            <img src={parent.profile_image ? parent.profile_image : null} alt={parent.first_name && parent.last_name} />
         </div>
         <div>
             <h3>Name: {parent.first_name}{parent.last_name}</h3>
@@ -25,7 +26,7 @@ const ParentCard = ({ parent }) => (
             </p>
         </div>
         <div>
-            <Link to={`/${parent.id}/book-job`}>Book Job</Link>
+            <Link to={`/${parent.id}/match-job`}>Match a Job</Link>
         </div>
     </section>
 )
