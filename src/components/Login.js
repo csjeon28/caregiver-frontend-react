@@ -65,8 +65,8 @@ const Login = ({ userLogin, userData }) => {
         personalizedLogin = <div className='loading-container'><div className='loading' /></div>
     }
     if (userData.isLoggedIn) {
-        if (userData.userType === 'caregiver') { personalizedLogin = <Redirect to='/home' /> }
-        if (userData.userType === 'parent') { personalizedLogin = <Redirect to='/dashboard' /> }
+        if (userData.userType === 'caregiver') { personalizedLogin = <Redirect to='/caregiver-dashboard' /> }
+        if (userData.userType === 'parent') { personalizedLogin = <Redirect to='/parent-dashboard' /> }
     }
     return (
         <section>
