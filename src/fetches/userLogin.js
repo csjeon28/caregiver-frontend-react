@@ -17,6 +17,7 @@ function userLogin(loginInfo, userType) {
                 localStorage.setItem('usertype', userType)
                 dispatch(action.userLogin(resp.data, userType))
             })
+            .then(resp => console.log(resp.data))
             .catch(error => dispatch(action.userLoginFail(error)))
     }
 }
