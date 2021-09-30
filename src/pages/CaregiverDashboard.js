@@ -7,14 +7,14 @@ import getParents from '../fetches/getParents'
 const CaregiverDashboard = ({ parents, loading, error, getParents }) => {
     useEffect(() => {
         getParents()
-    }, [])
+    }, [getParents])
 
     let parentCard
     if (loading) {
         parentCard = <div className='loading-container'><div className='loading' /></div>
     }
     if (parents) {
-        parentCard = parents.map(p => <ParentCard key={p.name} parent={p} />)
+        parentCard = parents.map((p, index) => <ParentCard key={index} parent={p} />)
     }
     if (error) {
         parentCard = (
