@@ -135,11 +135,11 @@ const ParentSignup = ({ userSignup, userData }) => {
 }
 
 const mapStateToProps = state => ({
-    userData: state.userData.user,
+    userData: state.userData.user
 })
 
 const mapDispatchToProps = {
-    userSignup,
+    userSignup
 }
 
 ParentSignup.propTypes = {
