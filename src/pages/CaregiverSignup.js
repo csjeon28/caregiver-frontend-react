@@ -139,11 +139,11 @@ const CaregiverSignup = ({ userSignup, userData }) => {
 }
 
 const mapStateToProps = state => ({
-    userData: state.userData.user,
+    userData: state.userData.user
 })
 
 const mapDispatchToProps = {
-    userSignup,
+    userSignup
 }
 
 CaregiverSignup.propTypes = {
