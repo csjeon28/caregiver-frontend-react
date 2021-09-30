@@ -25,7 +25,7 @@ const SideDashboard = ({ userType }) => {
                     My Parent/Guardian Dashboard
                 </NavLink>
                 <NavLink to='/new-schedule' activeClassName='selected'>
-                    New Job Schedule
+                    Job Schedule
                 </NavLink>
             </div>
         )
