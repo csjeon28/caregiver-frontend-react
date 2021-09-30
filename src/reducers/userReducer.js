@@ -29,9 +29,7 @@ const userData = (state = initialState, action) => {
             }
         case 'USER_LOGOUT': {
             localStorage.clear()
-            return {
-                ...state, isLoggedIn: false, user: '', userType: '',
-            }
+            return { ...state, isLoggedIn: false, user: '', userType: '' }
         }
         default:
             return state
