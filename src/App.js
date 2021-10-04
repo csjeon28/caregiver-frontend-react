@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getAutoLogin,
+  getAutoLogin
 }
 
 App.propTypes = {
