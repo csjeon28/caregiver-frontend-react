@@ -1,17 +1,15 @@
-import axios from 'axios'
 import * as action from '../actions/userActions'
+import { API_ROOT, HEADERS } from '../constants/index'
 
-function userSignup(loginInfo, userType) {
+function userSignup(loginData, userType) {
     return dispatch => {
-        const url = `http://localhost:3001/${userType}s`;
-        // fetch(url, {
-        axios
-            .post(url, loginInfo, {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            })
-            // .then(resp => resp.json())
+        const url = `${API_ROOT}/${userType}s`;
+        fetch(url, {
+            method: 'POST',
+            headers: { HEADERS },
+            body: JSON.stringify(loginData)
+        })
+            .then(resp => resp.json())
             .then(data => {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('usertype', userType)
