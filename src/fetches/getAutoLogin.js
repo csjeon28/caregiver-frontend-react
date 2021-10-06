@@ -1,16 +1,15 @@
 import axios from 'axios'
 import * as action from '../actions/userActions'
+import { API_ROOT, HEADERS } from '../constants/index'
 
 function getAutoLogin(userType) {
     return dispatch => {
-        dispatch(action.userLoginLoading())
         // change url to api when deployed to heroku
-        const api_url = `http://localhost:3001/${userType}/auto_login`
+        const api_url = `${API_ROOT}/${userType}/auto_login`
         axios
             .get(api_url, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
+                    HEADERS,
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 }
             })
