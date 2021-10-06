@@ -12,6 +12,8 @@ import CaregiverDashboard from './pages/CaregiverDashboard'
 import ParentDashboard from './pages/ParentDashboard'
 import CaregiverJobMatches from './components/CaregiverJobMatches'
 import CreateSchedule from './components/CreateSchedule'
+import SchedulePage from './pages/SchedulePage'
+import CreateJob from './components/CreateJob'
 
 const App = ({ getAutoLogin, userData }) => {
   const usertype = localStorage.getItem('usertype')
@@ -27,7 +29,6 @@ const App = ({ getAutoLogin, userData }) => {
 
   return (
     <div className='App'>
-      {/* <h1>Hello</h1> */}
       {userData.isLoggedIn ? <Header /> : null}
       {userData.isLoggedIn ? <SideDashboard userType={usertype} /> : null}
       <SideDashboard />
@@ -41,7 +42,8 @@ const App = ({ getAutoLogin, userData }) => {
           <Route exact path='/parent-dashboard' component={ParentDashboard} />
           <Route exact path='/job-matches' component={CaregiverJobMatches} />
           <Route exact path='/create-schedule' component={CreateSchedule} />
-          <Route />
+          <Route exact path='/:parentId/match-job' component={SchedulePage} />
+          <Route exact path='/new-job' component={CreateJob} />
         </Switch>
       </div>
     </div>
