@@ -1,16 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userLogin from '../fetches/userLogin'
+import Avatar from '@mui/material/Avatar'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import Divider from '@mui/material/Divider'
+import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
+import LockOpenIcon from '@mui/icons-material/LockOpen'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import LinearProgress from '@mui/material/LinearProgress'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+function Copyright(props) {
+    return (
+        <Typography variant='body2' color='text.secondary' align='center' {...props}>
+            {'Copyright © '}
+            <Link color='inherit' href='https://localhost:3000'>
+                CareGiver App
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    )
+}
+const theme = createTheme()
 
 const Login = ({ userLogin, userData }) => {
     const [user, setUser] = useState({
         email: '',
         password: '',
     })
-    const [userType, setUserType] = useState('caregiver')
+    const [userType, setUserType] = useState('')
+    const [progress, setProgress] = useState(0)
+    const isEnabled = user.email.length > 0 && user.password.length > 0
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -27,47 +61,118 @@ const Login = ({ userLogin, userData }) => {
         userLogin(userObject, userType)
         setUser({
             email: '',
-            password: '',
+            password: ''
         })
     }
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 0
+                }
+                const diff = Math.random() * 10
+                return Math.min(oldProgress + diff, 100)
+            })
+        }, 500)
+
+        return () => {
+            clearInterval(timer)
+        }
+    }, [])
+
     let personalizedLogin = (
-        <div>
-            <h1>Login Form</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='email'>
-                    <input name='email' type='email' id='email' placeholder='Email' onChange={handleChange} />
-                </label>
-
-                <label htmlFor='password'>
-                    <input name='password' id='password' type='password' placeholder='Password' onChange={handleChange} />
-                </label>
-
-                <select value={userType} onChange={handleUserType}>
-                    <option value='caregiver'>Caregiver</option>
-                    <option value='parent'>Parent/Guardian</option>
-                </select>
-
-                <button type='submit'>Log In</button>
-            </form>
-            {userData.error ? (<div><p>{userData.user.error}</p></div>) : null}
-            <span>
-                Don't have an account? Sign up as:<br />
-                {' '}
-                <Link to='/caregiver/signup'>Caregiver</Link>
-                {' or '}
-                <Link to='/parent/signup'>Parent/Guardian</Link>
-            </span>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Container component='main' maxWidth='xs'>
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOpenIcon />
+                    </Avatar>
+                    <Typography component='h1' variant='h5'>
+                        Log In
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <Typography variant='subtitle2' color='red' align='right'>* Required Fields</Typography>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            onChange={handleChange}
+                        />
+                        <FormControl fullWidth>
+                            <InputLabel required id="usertype-label">User Type:</InputLabel>
+                            <Select
+                                labelId="usertype-label"
+                                id="usertype"
+                                value={userType}
+                                label="Usertype"
+                                onChange={handleUserType}
+                            >
+                                <MenuItem value=''>Choose Account Type:</MenuItem>
+                                <MenuItem value='caregiver'>Caregiver</MenuItem>
+                                <MenuItem value='parent'>Parent/Guardian</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            disabled={!isEnabled}
+                        >
+                            Log In
+                        </Button>
+                        <Divider />
+                        <Typography variant='body1' align='center' >
+                            Don't have an account? <br />
+                            Sign up as:&nbsp;
+                            <Link href='/caregiver/signup' variant='body1'>
+                                Caregiver
+                            </Link>{' or '}
+                            <Link href='/parent/signup' variant='body1'>
+                                Parent/Guardian
+                            </Link>
+                        </Typography>
+                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.user.error}</Alert>) : null}
+                    </Box>
+                </Box>
+                <Copyright sx={{ mt: 8, mb: 4 }} />
+            </Container>
+        </ThemeProvider>
     )
 
     if (userData.loading) {
-        personalizedLogin = <div className='loading-container'><div className='loading' /></div>
+        personalizedLogin = <Box sx={{ width: '100%' }}><LinearProgress variant='determinate' value={progress} /></Box>
     }
     if (userData.isLoggedIn) {
-        if (userData.userType === 'caregiver') { personalizedLogin = <Redirect to='/caregiver-dashboard' /> }
-        if (userData.userType === 'parent') { personalizedLogin = <Redirect to='/parent-dashboard' /> }
+        if (userData.userType === 'caregiver' && userData.user) { personalizedLogin = <Redirect to='/caregiver-dashboard' /> }
+        if (userData.userType === 'parent' && userData.user) { personalizedLogin = <Redirect to='/parent-dashboard' /> }
     }
+
     return (
         <section>
             <div>
@@ -82,12 +187,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    userLogin,
+    userLogin
 }
 
 Login.propTypes = {
     userData: PropTypes.instanceOf(Object).isRequired,
-    userLogin: PropTypes.func.isRequired,
+    userLogin: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
