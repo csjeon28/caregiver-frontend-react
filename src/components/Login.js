@@ -3,40 +3,16 @@ import { Redirect } from 'react-router'
 // import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import Copyright from './Copyright'
 import userLogin from '../fetches/userLogin'
-import Avatar from '@mui/material/Avatar'
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
-import Button from '@mui/material/Button'
-import CssBaseline from '@mui/material/CssBaseline'
-import Divider from '@mui/material/Divider'
-import TextField from '@mui/material/TextField'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import Select from '@mui/material/Select'
-import Link from '@mui/material/Link'
-import Box from '@mui/material/Box'
+import {
+    Alert, AlertTitle, Avatar, Box, Button, CssBaseline, Divider, FormControl,
+    Grid, InputLabel, LinearProgress, Link, MenuItem, Paper, Select, TextField, Typography
+} from '@mui/material'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
-import LinearProgress from '@mui/material/LinearProgress'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Image from '../images/caregiver_background.jpeg'
 
-function Copyright(props) {
-    return (
-        <Typography variant='body2' color='text.secondary' align='center' {...props}>
-            {'Copyright © '}
-            <Link color='inherit' href='https://localhost:3000'>
-                CareGiver App
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    )
-}
 const theme = createTheme()
 
 const Login = ({ userLogin, userData }) => {
