@@ -19,9 +19,11 @@ import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
 import LinearProgress from '@mui/material/LinearProgress'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Image from '../images/caregiver_background.jpeg'
 
 function Copyright(props) {
     return (
@@ -83,85 +85,102 @@ const Login = ({ userLogin, userData }) => {
 
     let personalizedLogin = (
         <ThemeProvider theme={theme}>
-            <Container component='main' maxWidth='xs'>
+            <Grid container component='main' sx={{ height: '100vh' }}>
                 <CssBaseline />
-                <Box
+                <Grid
+                    item
+                    xs={false}
+                    sm={4}
+                    md={7}
                     sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
+                        backgroundImage: `url(${Image})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundColor: (c) =>
+                            c.palette.mode === 'light' ? c.palette.grey[50] : c.palette.grey[900],
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
                     }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOpenIcon />
-                    </Avatar>
-                    <Typography component='h1' variant='h5'>
-                        Log In
-                    </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <Typography variant='subtitle2' color='red' align='right'>* Required Fields</Typography>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange={handleChange}
-                        />
-                        <FormControl fullWidth>
-                            <InputLabel required id="usertype-label">User Type:</InputLabel>
-                            <Select
-                                labelId="usertype-label"
-                                id="usertype"
-                                value={userType}
-                                label="Usertype"
-                                onChange={handleUserType}
-                            >
-                                <MenuItem value=''>Choose Account Type:</MenuItem>
-                                <MenuItem value='caregiver'>Caregiver</MenuItem>
-                                <MenuItem value='parent'>Parent/Guardian</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                            disabled={!isEnabled}
-                        >
+                />
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <Box
+                        sx={{
+                            my: 8,
+                            mx: 4,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <LockOpenIcon />
+                        </Avatar>
+                        <Typography component='h1' variant='h5'>
                             Log In
-                        </Button>
-                        <Divider />
-                        <Typography variant='body1' align='center' >
-                            Don't have an account? <br />
-                            Sign up as:&nbsp;
-                            <Link href='/caregiver/signup' variant='body1'>
-                                Caregiver
-                            </Link>{' or '}
-                            <Link href='/parent/signup' variant='body1'>
-                                Parent/Guardian
-                            </Link>
                         </Typography>
-                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.user.error}</Alert>) : null}
+                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                            <Typography variant='subtitle2' color='red' align='right'>* Required Fields</Typography>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={handleChange}
+                            />
+                            <FormControl fullWidth>
+                                <InputLabel required id="usertype-label">User Type:</InputLabel>
+                                <Select
+                                    labelId="usertype-label"
+                                    id="usertype"
+                                    value={userType}
+                                    label="Usertype"
+                                    onChange={handleUserType}
+                                >
+                                    <MenuItem value=''>Choose Account Type:</MenuItem>
+                                    <MenuItem value='caregiver'>Caregiver</MenuItem>
+                                    <MenuItem value='parent'>Parent/Guardian</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                                disabled={!isEnabled}
+                            >
+                                Log In
+                            </Button>
+                            <Divider />
+                            <Typography variant='body1' align='center' >
+                                Don't have an account? <br />
+                                Sign up as:&nbsp;
+                                <Link href='/caregiver/signup' variant='body1'>
+                                    Caregiver
+                                </Link>{' or '}
+                                <Link href='/parent/signup' variant='body1'>
+                                    Parent/Guardian
+                                </Link>
+                            </Typography>
+                            {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.user.error}</Alert>) : null}
+                        </Box>
                     </Box>
-                </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
-            </Container>
+                    <Copyright sx={{ mt: 8, mb: 4 }} />
+                </Grid>
+            </Grid>
         </ThemeProvider>
     )
 
