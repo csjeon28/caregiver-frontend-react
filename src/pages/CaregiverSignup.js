@@ -133,8 +133,6 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                         autoComplete='new-password'
                                     />
                                 </Grid>
-
-                                {/* //FIX THE DATE SHOWING mm/dd/yyyy */}
                                 <Grid item xs={12}>
                                     <TextField
                                         required
@@ -143,6 +141,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                         label='Date of Birth'
                                         type='date'
                                         id='date_of_birth'
+                                        InputLabelProps={{ shrink: true }}
                                         onChange={handleChange}
                                     />
                                 </Grid>
