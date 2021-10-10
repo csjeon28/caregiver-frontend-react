@@ -11,6 +11,7 @@ import {
     Grid, InputAdornment, InputLabel, Link, MenuItem, OutlinedInput, Select, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { pink } from '@mui/material/colors'
 
 const theme = createTheme()
 
@@ -55,10 +56,10 @@ const ParentSignup = ({ userSignup, userData }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <Avatar sx={{ m: 1, bgcolor: pink[200] }}>
                             <ContactsIcon />
                         </Avatar>
-                        <Typography component='h1' variant='h5'>
+                        <Typography component='h1' variant='h5' sx={{ color: pink[400] }}>
                             Parent/Guardian Registration
                         </Typography>
                         <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -188,23 +189,23 @@ const ParentSignup = ({ userSignup, userData }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormGroup>
-                                        <FormControlLabel
-                                            control={<Switch
-                                                checked={user.smoker}
-                                                name='smoker'
-                                                onChange={handleChecked}
-                                                inputProps={{ 'aria-label': 'controlled' }} />}
-                                            label='Smoker'
-                                        />
-                                        <FormControlLabel
-                                            control={<Switch
-                                                checked={user.has_pets}
-                                                name='has_pets'
-                                                onChange={handleChecked}
-                                                inputProps={{ 'aria-label': 'controlled' }} />}
-                                            label='Pet Owner' />
-                                    </FormGroup>
+                                    <FormControlLabel
+                                        control={<Switch
+                                            checked={user.smoker}
+                                            name='smoker'
+                                            onChange={handleChecked}
+                                            inputProps={{ 'aria-label': 'controlled' }} />}
+                                        label='Smoker'
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControlLabel
+                                        control={<Switch
+                                            checked={user.has_pets}
+                                            name='has_pets'
+                                            onChange={handleChecked}
+                                            inputProps={{ 'aria-label': 'controlled' }} />}
+                                        label='Pet Owner' />
                                 </Grid>
 
                                 <Button
