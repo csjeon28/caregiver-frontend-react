@@ -11,7 +11,7 @@ import {
     Grid, InputAdornment, InputLabel, Link, MenuItem, OutlinedInput, Select, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { pink } from '@mui/material/colors'
+import { pink, blue } from '@mui/material/colors'
 
 const theme = createTheme()
 
@@ -212,7 +212,7 @@ const ParentSignup = ({ userSignup, userData }) => {
                                     type='submit'
                                     fullWidth
                                     variant='contained'
-                                    sx={{ mt: 3, mb: 2 }}
+                                    sx={{ mt: 3, mb: 2, ml: 4, mr: 2, bgcolor: blue[900] }}
                                 >
                                     Sign Up
                                 </Button>
