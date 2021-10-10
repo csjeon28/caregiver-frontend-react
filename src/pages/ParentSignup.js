@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userSignup from '../fetches/userSignup'
+import Copyright from '../components/Copyright'
+import ContactsIcon from '@mui/icons-material/Contacts'
+import {
+    Alert, AlertTitle, Avatar, Box, Button, Container, CssBaseline, Divider, FormControl, FormControlLabel, FormGroup,
+    Grid, InputAdornment, InputLabel, Link, MenuItem, OutlinedInput, Select, Switch, TextField, Typography
+} from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+const theme = createTheme()
 
 const ParentSignup = ({ userSignup, userData }) => {
     const [user, setUser] = useState({
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        bio: '',
-        city: '',
-        state: '',
-        country: '',
-        language: '',
-        smoker: '',
-        has_pets: '',
-        hourly_rate: '',
-        profile_image: '',
+        smoker: false,
+        has_pets: false,
         number_of_children: ''
     })
 
@@ -30,26 +28,15 @@ const ParentSignup = ({ userSignup, userData }) => {
         setUser({ ...user, [name]: value })
     }
 
+    const handleChecked = (e) => {
+        const { name, checked } = e.target
+        setUser({ ...user, [name]: checked })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const userObject = { [userType]: user }
         userSignup(userObject, userType)
-        setUser({
-            first_name: '',
-            last_name: '',
-            email: '',
-            password: '',
-            bio: '',
-            city: '',
-            state: '',
-            country: '',
-            language: '',
-            smoker: '',
-            has_pets: '',
-            hourly_rate: '',
-            profile_image: '',
-            number_of_children: ''
-        })
     }
 
     let personalizedSignup
@@ -57,71 +44,191 @@ const ParentSignup = ({ userSignup, userData }) => {
         personalizedSignup = <Redirect to='/parent-dashboard' />
     } else {
         personalizedSignup = (
-            <div>
-                <h1>Parent Sign Up Page</h1>
-                <form onSubmit={handleSubmit} id='parent_signup'>
-                    <label htmlFor='first_name'>
-                        <input name='first_name' type='text' id='first_name' placeholder='First Name' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='last_name'>
-                        <input name='last_name' type='text' id='last_name' placeholder='Last Name' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='email'>
-                        <input name='email' type='email' id='email' placeholder='Email' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='password'>
-                        <input name='password' id='password' type='password' placeholder='Password' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='bio'>
-                        <input name='bio' id='bio' type='textarea' placeholder='About me' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='city'>
-                        <input name='city' id='city' type='text' placeholder='City' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='state'>
-                        <input name='state' id='state' type='text' placeholder='State' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='country'>
-                        <input name='country' id='country' type='text' placeholder='Country' onChange={handleChange} />
-                    </label>
-                    <label htmlFor='language'>
-                        <input name='language' id='language' type='text' placeholder='Language(s) Spoken' onChange={handleChange} />
-                    </label>
-                    <br />
-                    <label htmlFor='smoker'>Smoker
-                        <input name='smoker' id='smoker' type='checkbox' onChange={handleChange} />
-                    </label>
+            <ThemeProvider theme={theme}>
+                <Container component='main' maxWidth='xs'>
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <ContactsIcon />
+                        </Avatar>
+                        <Typography component='h1' variant='h5'>
+                            Parent/Guardian Registration
+                        </Typography>
+                        <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id='first_name'
+                                        label='First Name'
+                                        name='first_name'
+                                        autoFocus
+                                        autoComplete='fname'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id='last-name'
+                                        label='Last Name'
+                                        name='last_name'
+                                        autoComplete='lname'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id='email'
+                                        type='email'
+                                        label='Email Address'
+                                        name='email'
+                                        autoComplete='email'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        name='password'
+                                        label='Password'
+                                        type='password'
+                                        id='password'
+                                        autoComplete='new-password'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        id='city'
+                                        label='City'
+                                        name='city'
+                                        autoComplete='city'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        id='state'
+                                        label='State'
+                                        name='state'
+                                        autoComplete='state'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl required variant='outlined'>
+                                        <InputLabel>Hourly Rate</InputLabel>
+                                        <OutlinedInput
+                                            id='hourly_rate'
+                                            name='hourly_rate'
+                                            type='number'
+                                            value={user.hourly_rate}
+                                            onChange={handleChange}
+                                            startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+                                            label='Hourly Rate'
+                                        // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id='number_of_children_label'>No. of Children</InputLabel>
+                                        <Select
+                                            labelId='number_of_children_label'
+                                            id='number_of_children'
+                                            value={user.number_of_children}
+                                            label='Number of Children'
+                                            onChange={(e) => setUser({ ...user, number_of_children: e.target.value })}
+                                        >
+                                            <MenuItem value={'1'}>1</MenuItem>
+                                            <MenuItem value={'2'}>2</MenuItem>
+                                            <MenuItem value={'3'}>3</MenuItem>
+                                            <MenuItem value={'4+'}>4+</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
 
-                    <label htmlFor='has_pets'>I have pets
-                        <input name='has_pets' id='has_pets' type='checkbox' onChange={handleChange} />
-                    </label>
-                    <br />
-                    <label htmlFor='hourly_rate'>
-                        <input name='hourly_rate' id='hourly_rate' type='number' placeholder='Hourly Rate' onChange={handleChange} />
-                    </label>
-                    <br />
-                    <label htmlFor='number_of_children'>No. of Children
-                        <select form='parent_signup' name='number_of_children' id='number_of_children' placeholder='Number of Children' onChange={handleChange}>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4+'>4+</option>
-                        </select>
-                    </label>
-                    <br />
-                    <label htmlFor='profile_image'>Profile Image
-                        <input name='profile_image' type='file' id='profile_image' onChange={handleChange} />
-                    </label>
-                    <br />
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id='bio'
+                                        multiline
+                                        name='bio'
+                                        label='A Little About Yourself'
+                                        maxRows={4}
+                                        value={user.bio}
+                                        variant='outlined'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id='language'
+                                        label='Language(s) Spoken'
+                                        name='language'
+                                        autoComplete='language'
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormGroup>
+                                        <FormControlLabel
+                                            control={<Switch
+                                                checked={user.smoker}
+                                                name='smoker'
+                                                onChange={handleChecked}
+                                                inputProps={{ 'aria-label': 'controlled' }} />}
+                                            label='Smoker'
+                                        />
+                                        <FormControlLabel
+                                            control={<Switch
+                                                checked={user.has_pets}
+                                                name='has_pets'
+                                                onChange={handleChecked}
+                                                inputProps={{ 'aria-label': 'controlled' }} />}
+                                            label='Pet Owner' />
+                                    </FormGroup>
+                                </Grid>
 
-                    <button type='submit'>Sign Up</button>
-                </form>
-                {userData.error ? (<div><p>{userData.error}</p></div>) : null}
-                <span>
-                    {'Already have an account? '}
-                    <Link to='/login'>Login</Link>
-                </span>
-            </div>
+                                <Button
+                                    type='submit'
+                                    fullWidth
+                                    variant='contained'
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Sign Up
+                                </Button>
+                            </Grid>
+                            <Divider />
+                            <Typography variant='body1' align='center' >
+                                Already have an account? <br />
+                                <Link href='/login' variant='body1'>
+                                    Log In
+                                </Link>
+                            </Typography>
+                            {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.error}</Alert>) : null}
+                            <Copyright sx={{ mt: 8, mb: 4 }} />
+                        </Box>
+                    </Box>
+                </Container>
+            </ThemeProvider>
         )
     }
 
@@ -143,7 +250,7 @@ const mapDispatchToProps = {
 }
 
 ParentSignup.propTypes = {
-    userData: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Object)]).isRequired,
+    userData: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number, PropTypes.instanceOf(Object)]).isRequired,
     userSignup: PropTypes.func.isRequired
 }
 
