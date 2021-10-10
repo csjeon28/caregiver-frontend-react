@@ -11,7 +11,7 @@ import {
     FormControlLabel, FormGroup, Grid, InputAdornment, InputLabel, Link, OutlinedInput, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { teal } from '@mui/material/colors'
+import { teal, blue } from '@mui/material/colors'
 
 const theme = createTheme()
 
@@ -226,7 +226,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                     type='submit'
                                     fullWidth
                                     variant='contained'
-                                    sx={{ mt: 3, mb: 2 }}
+                                    sx={{ mt: 3, mb: 2, ml: 4, mr: 2, bgcolor: blue[900] }}
                                 >
                                     Sign Up
                                 </Button>
