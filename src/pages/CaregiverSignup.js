@@ -11,6 +11,7 @@ import {
     FormControlLabel, FormGroup, Grid, InputAdornment, InputLabel, Link, OutlinedInput, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { teal } from '@mui/material/colors'
 
 const theme = createTheme()
 
@@ -56,11 +57,11 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <Avatar sx={{ m: 1, bgcolor: teal[300] }}>
                             <ContactsIcon />
                         </Avatar>
-                        <Typography component='h1' variant='h5'>
-                            Caregiver Sign up
+                        <Typography component='h1' variant='h5' sx={{ color: teal[500] }}>
+                            Caregiver Registration
                         </Typography>
                         <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
                             <Grid container spacing={2}>
