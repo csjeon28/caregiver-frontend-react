@@ -22,7 +22,7 @@ const Login = ({ userLogin, userData }) => {
     })
     const [userType, setUserType] = useState('')
     const [progress, setProgress] = useState(0)
-    const isEnabled = user.email.length > 0 && user.password.length > 0
+    const isEnabled = user.email.length > 0 && user.password.length > 0 && userType
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -93,37 +93,37 @@ const Login = ({ userLogin, userData }) => {
                         <Typography component='h1' variant='h5'>
                             Log In
                         </Typography>
-                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <Typography variant='subtitle2' color='red' align='right'>* Required Fields</Typography>
                             <TextField
-                                margin="normal"
+                                margin='normal'
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id='email'
+                                label='Email Address'
+                                name='email'
+                                autoComplete='email'
                                 autoFocus
                                 onChange={handleChange}
                             />
                             <TextField
-                                margin="normal"
+                                margin='normal'
                                 required
                                 fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
+                                name='password'
+                                label='Password'
+                                type='password'
+                                id='password'
+                                autoComplete='current-password'
                                 onChange={handleChange}
                             />
                             <FormControl fullWidth>
-                                <InputLabel required id="usertype-label">User Type:</InputLabel>
+                                <InputLabel required id='usertype-label'>User Type:</InputLabel>
                                 <Select
-                                    labelId="usertype-label"
-                                    id="usertype"
+                                    labelId='usertype-label'
+                                    id='usertype'
                                     value={userType}
-                                    label="Usertype"
+                                    label='Usertype'
                                     onChange={handleUserType}
                                 >
                                     <MenuItem value=''>Choose Account Type:</MenuItem>
@@ -132,9 +132,9 @@ const Login = ({ userLogin, userData }) => {
                                 </Select>
                             </FormControl>
                             <Button
-                                type="submit"
+                                type='submit'
                                 fullWidth
-                                variant="contained"
+                                variant='contained'
                                 sx={{ mt: 3, mb: 2 }}
                                 disabled={!isEnabled}
                             >
@@ -151,7 +151,7 @@ const Login = ({ userLogin, userData }) => {
                                     Parent/Guardian
                                 </Link>
                             </Typography>
-                            {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.user.error}</Alert>) : null}
+                            {userData.user.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.user.error}</Alert>) : null}
                         </Box>
                     </Box>
                     <Copyright sx={{ mt: 8, mb: 4 }} />
@@ -163,10 +163,9 @@ const Login = ({ userLogin, userData }) => {
     if (userData.loading) {
         personalizedLogin = <Box sx={{ width: '100%' }}><LinearProgress variant='determinate' value={progress} /></Box>
     }
-    if (userData.isLoggedIn) {
-        if (userData.userType === 'caregiver' && userData.user) { personalizedLogin = <Redirect to='/caregiver-dashboard' /> }
-        if (userData.userType === 'parent' && userData.user) { personalizedLogin = <Redirect to='/parent-dashboard' /> }
-    }
+
+    if (userData.userType === 'caregiver' && !userData.user.error) { personalizedLogin = <Redirect to='/caregiver-dashboard' /> }
+    if (userData.userType === 'parent' && !userData.user.error) { personalizedLogin = <Redirect to='/parent-dashboard' /> }
 
     return (
         <section>
