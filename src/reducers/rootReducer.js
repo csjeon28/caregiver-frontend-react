@@ -3,7 +3,7 @@ import userData from './userReducer'
 import parentData from './parentReducer'
 import jobData from './jobReducer'
 import scheduleData from './scheduleReducer'
-import caregiverReducer from './caregiverReducer'
+import caregiverData from './caregiverReducer'
 
 const rootReducer = combineReducers({
     userData,
