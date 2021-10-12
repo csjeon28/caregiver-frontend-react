@@ -4,7 +4,7 @@ import { API_ROOT, HEADERS } from '../constants/index'
 
 function userLogin(loginInfo, userType) {
     return dispatch => {
-        // change to heroku after dploying
+        dispatch(action.userLoginLoading())
         const url = `${API_ROOT}/${userType}/login`
         axios
             .post(url, loginInfo, {
