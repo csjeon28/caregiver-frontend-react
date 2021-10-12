@@ -1,17 +1,26 @@
 const initialState = {
     parents: '',
-    loading: false,
     error: '',
 }
 
 const parentData = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_PARENTS_LOADING':
-            return { ...state, loading: true, error: '' }
         case 'GET_PARENTS':
-            return { ...state, loading: false, parents: action.payload }
+            return { ...state, parents: action.payload }
         case 'GET_PARENTS_FAIL':
-            return { ...state, loading: false, error: action.payload, parents: '' }
+            return { ...state, error: action.payload, parents: '' }
+        // case 'UPDATE_PARENT':
+        //     return state.map((s) => {
+        //         if (s.id === action.payload.id) {
+        //             return {
+        //                 ...state, ...action.payload
+        //             }
+        //         } else {
+        //             return s
+        //         }
+        //     })
+        // case 'DELETE_PARENT':
+        //     return state.filter(({ id }) => id !== action.payload.id)
         default:
             return state
     }
