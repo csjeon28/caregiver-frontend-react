@@ -1,3 +1,7 @@
+export const userLoginLoading = () => ({
+    type: 'USER_LOGIN_LOADING',
+})
+
 export const userLogin = (data, userType) => ({
     type: 'USER_LOGIN',
     payload: data,
