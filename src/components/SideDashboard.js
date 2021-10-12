@@ -10,7 +10,7 @@ const SideDashboard = ({ userType }) => {
             <div>
                 <NavLink exact to='/caregiver-dashboard' activeClassName='selected'>
                     My CareGiver Dashboard
-                </NavLink>
+                </NavLink>&nbsp;-&nbsp;
                 <NavLink exact to='/jobs' activeClassName='selected'>
                     My Jobs
                 </NavLink>
@@ -23,15 +23,17 @@ const SideDashboard = ({ userType }) => {
             <div>
                 <NavLink to='/parent-dashboard' activeClassName='selected'>
                     My Parent/Guardian Dashboard
-                </NavLink>
-                <NavLink to='/new-schedule' activeClassName='selected'>
-                    Job Schedule
+                </NavLink>&nbsp;-&nbsp;
+                <NavLink to='/new-job' activeClassName='selected'>
+                    Post a Job
+                </NavLink>&nbsp;-&nbsp;
+                <NavLink to='/create-schedule' activeClassName='selected'>
+                    Create Schedule
                 </NavLink>
             </div>
         )
     }
     return (
-        // <aside>
         <div>
             {personalSideDashboard}
         </div>
@@ -39,11 +41,11 @@ const SideDashboard = ({ userType }) => {
 }
 
 SideDashboard.propTypes = {
-    userType: PropTypes.string,
+    userType: PropTypes.string
 }
 
-SideDashboard.defaultProps = {
-    userType: null,
-}
+// SideDashboard.defaultProps = {
+//     userType: null,
+// }
 
 export default SideDashboard
