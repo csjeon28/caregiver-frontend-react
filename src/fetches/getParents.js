@@ -7,10 +7,7 @@ function getParents() {
         const url = 'http://localhost:3001/parents'
         axios
             .get(url)
-            .then(resp => {
-                const parentsList = resp.data
-                dispatch(action.getParents(parentsList))
-            })
+            .then(resp => dispatch(action.getParents(resp.data)))
             .catch(error => dispatch(action.getParentsFail(error)))
     }
 }
