@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Logout from './Logout'
 
 const SideDashboard = ({ userType }) => {
     let personalSideDashboard
@@ -14,6 +15,7 @@ const SideDashboard = ({ userType }) => {
                 <NavLink exact to='/jobs' activeClassName='selected'>
                     My Jobs
                 </NavLink>
+                <Logout />
             </div>
         )
     }
@@ -30,6 +32,7 @@ const SideDashboard = ({ userType }) => {
                 <NavLink to='/create-schedule' activeClassName='selected'>
                     Create Schedule
                 </NavLink>
+                <Logout />
             </div>
         )
     }
