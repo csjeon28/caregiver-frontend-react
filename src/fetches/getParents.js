@@ -8,7 +8,7 @@ function getParents() {
         axios
             .get(url)
             .then(resp => dispatch(action.getParents(resp.data)))
-            .catch(error => dispatch(action.getParentsFail(error)))
+            .catch(error => dispatch(action.getParentsFail(error.response.data.errors)))
     }
 }
 
