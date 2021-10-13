@@ -8,7 +8,7 @@ function getCaregivers() {
         axios
             .get(url)
             .then(resp => dispatch(action.getCaregivers(resp.data)))
-            .catch(error => dispatch(action.getCaregiversFail(error)))
+            .catch(error => dispatch(action.getCaregiversFail(error.response.data.errors)))
     }
 }
 
