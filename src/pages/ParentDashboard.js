@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CaregiverCard from '../components/CaregiverCard'
 import getCaregivers from '../fetches/getCaregivers'
-import Logout from '../components/Logout'
 
 const ParentDashboard = ({ caregivers, error, getCaregivers }) => {
     const usertoken = localStorage.getItem('token')
