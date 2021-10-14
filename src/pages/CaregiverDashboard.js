@@ -4,23 +4,25 @@ import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
 
-const CaregiverDashboard = ({ parents, loading, error, getParents }) => {
+const CaregiverDashboard = ({ parents, error, getParents }) => {
+    const usertoken = localStorage.getItem('token')
+
     useEffect(() => {
-        getParents()
-    }, [getParents])
+        if (usertoken) {
+            getParents()
+        }
+    }, [getParents, usertoken])
 
     let parentCard
-    if (loading) {
-        parentCard = <div className='loading-container'><div className='loading' /></div>
-    }
+
     if (parents) {
         parentCard = parents.map((p, index) => <ParentCard key={index} parent={p} />)
     }
     if (error) {
         parentCard = (
             <div>
-                Error!
-                {error.message}
+                Error!<br />
+                {error}
             </div>
         )
     }
@@ -34,8 +36,7 @@ const CaregiverDashboard = ({ parents, loading, error, getParents }) => {
 
 const mapStateToProps = state => ({
     parents: state.parentData.parents,
-    loading: state.parentData.loading,
-    error: state.parentData.error,
+    error: state.parentData.error
 })
 
 const mapDispatchToProps = {
@@ -44,9 +45,8 @@ const mapDispatchToProps = {
 
 CaregiverDashboard.propTypes = {
     parents: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
-    loading: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
-    getParents: PropTypes.func.isRequired,
+    getParents: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaregiverDashboard)
