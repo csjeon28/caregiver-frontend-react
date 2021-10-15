@@ -7,13 +7,14 @@ import { userLogout } from '../actions/userActions'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Button, Stack } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { purple } from '@mui/material/colors'
+import { teal } from '@mui/material/colors'
 
 const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
+    // color: theme.palette.getContrastText(teal[400]),
+    color: teal[50],
+    backgroundColor: teal[300],
     '&:hover': {
-        backgroundColor: purple[800],
+        backgroundColor: teal[400],
     },
 }))
 
