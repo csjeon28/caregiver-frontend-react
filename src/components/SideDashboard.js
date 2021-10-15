@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Logout from './Logout'
 import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import AccountCircle from '@mui/icons-material/AccountCircle'
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly'
+import { purple, cyan, amber, deepOrange } from '@mui/material/colors'
 
 const SideDashboard = ({ userType }) => {
     const history = useHistory()
@@ -22,18 +23,14 @@ const SideDashboard = ({ userType }) => {
 
     if (userType === 'caregiver') {
         personalSideDashboard = (
-            // <div>
-            //     <NavLink exact to='/caregiver-dashboard' activeClassName='selected'>
-            //         My CareGiver Dashboard
-            //     </NavLink>&nbsp;-&nbsp;
-            //     <NavLink exact to='/jobs' activeClassName='selected'>
-            //         My Jobs
-            //     </NavLink>
-            //     <Logout />
-            // </div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position='static'>
+                <AppBar position='static' sx={{ bgcolor: purple[200], color: cyan[50] }}>
                     <Toolbar>
+                        <Typography variant='h1' component='div' sx={{ flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 38 }}>
+                            <ChildFriendlyIcon sx={{ fontSize: 24, color: amber[100] }} />
+                            &nbsp;&middot;&nbsp;&middot;&nbsp;CareGiver Dashboard&nbsp;&middot;&nbsp;&middot;&nbsp;
+                            <ChildFriendlyIcon sx={{ fontSize: 24, color: amber[100] }} />
+                        </Typography>
                         <IconButton
                             size='large'
                             aria-label='account of current user'
@@ -42,7 +39,7 @@ const SideDashboard = ({ userType }) => {
                             onClick={handleMenu}
                             color='inherit'
                         >
-                            <AccountCircle />
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id='menu-appbar'
@@ -59,21 +56,10 @@ const SideDashboard = ({ userType }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
+                            <MenuItem onClick={() => history.push('/caregiver-dashboard')}>My Dashboard</MenuItem>
                             <MenuItem onClick={() => history.push('/profile')}>My Profile</MenuItem>
                             <MenuItem onClick={() => history.push('/jobs')}>My Jobs</MenuItem>
                         </Menu>
-                        {/* <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton> */}
-                        <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-                            CareGiver Dashboard
-                        </Typography>
                         <Logout />
                     </Toolbar>
                 </AppBar>
@@ -83,21 +69,14 @@ const SideDashboard = ({ userType }) => {
 
     if (userType === 'parent') {
         personalSideDashboard = (
-            // <div>
-            //     <NavLink to='/parent-dashboard' activeClassName='selected'>
-            //         My Parent/Guardian Dashboard
-            //     </NavLink>&nbsp;-&nbsp;
-            //     <NavLink to='/new-job' activeClassName='selected'>
-            //         Post a Job
-            //     </NavLink>&nbsp;-&nbsp;
-            //     <NavLink to='/create-schedule' activeClassName='selected'>
-            //         Create Schedule
-            //     </NavLink>
-            //     <Logout />
-            // </div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position='static'>
+                <AppBar position='static' sx={{ color: purple[300], bgcolor: cyan[100] }}>
                     <Toolbar>
+                        <Typography variant='h1' component='div' sx={{ flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 38 }}>
+                            <ChildFriendlyIcon sx={{ fontSize: 24, color: deepOrange[200] }} />
+                            &nbsp;&middot;&nbsp;&middot;&nbsp;Parent&nbsp;||&nbsp;Guardian Dashboard&nbsp;&middot;&nbsp;&middot;&nbsp;
+                            <ChildFriendlyIcon sx={{ fontSize: 24, color: deepOrange[200] }} />
+                        </Typography>
                         <IconButton
                             size='large'
                             aria-label='account of current user'
@@ -106,7 +85,7 @@ const SideDashboard = ({ userType }) => {
                             onClick={handleMenu}
                             color='inherit'
                         >
-                            <AccountCircle />
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id='menu-appbar'
@@ -123,22 +102,11 @@ const SideDashboard = ({ userType }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
+                            <MenuItem onClick={() => history.push('/parent-dashboard')}>My Dashboard</MenuItem>
                             <MenuItem onClick={() => history.push('/profile')}>My Profile</MenuItem>
                             <MenuItem onClick={() => history.push('/new-job')}>Post Job</MenuItem>
                             <MenuItem onClick={() => history.push('/create-schedule')}>Create Schedule</MenuItem>
                         </Menu>
-                        {/* <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton> */}
-                        <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-                            Parent/Guardian Dashboard
-                        </Typography>
                         <Logout />
                     </Toolbar>
                 </AppBar>
