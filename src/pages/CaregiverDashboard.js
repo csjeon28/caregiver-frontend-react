@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
+import { Box, Grid } from '@mui/material'
 
 const CaregiverDashboard = ({ parents, error, getParents }) => {
     const usertoken = localStorage.getItem('token')
@@ -28,9 +29,9 @@ const CaregiverDashboard = ({ parents, error, getParents }) => {
     }
 
     return (
-        <div>
+        <Grid container spacing={3} sx={{ padding: '2em' }}>
             {parentCard}
-        </div>
+        </Grid>
     )
 }
 
