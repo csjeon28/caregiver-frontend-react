@@ -5,7 +5,7 @@ import Logout from './Logout'
 import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly'
-import { purple, cyan, amber, deepOrange } from '@mui/material/colors'
+import { purple, cyan, amber, deepOrange, teal } from '@mui/material/colors'
 
 const SideDashboard = ({ userType }) => {
     const history = useHistory()
@@ -56,9 +56,9 @@ const SideDashboard = ({ userType }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={() => history.push('/caregiver-dashboard')}>My Dashboard</MenuItem>
-                            <MenuItem onClick={() => history.push('/profile')}>My Profile</MenuItem>
-                            <MenuItem onClick={() => history.push('/jobs')}>My Jobs</MenuItem>
+                            <MenuItem sx={{ color: teal[200] }} onClick={() => history.push('/caregiver-dashboard')}>Dashboard</MenuItem>
+                            <MenuItem sx={{ color: teal[500] }} onClick={() => history.push('/profile')}>Profile</MenuItem>
+                            <MenuItem sx={{ color: teal[800] }} onClick={() => history.push('/jobs')}>My Jobs</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
@@ -102,10 +102,10 @@ const SideDashboard = ({ userType }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={() => history.push('/parent-dashboard')}>My Dashboard</MenuItem>
-                            <MenuItem onClick={() => history.push('/profile')}>My Profile</MenuItem>
-                            <MenuItem onClick={() => history.push('/new-job')}>Post Job</MenuItem>
-                            <MenuItem onClick={() => history.push('/create-schedule')}>Create Schedule</MenuItem>
+                            <MenuItem sx={{ color: purple[200] }} onClick={() => history.push('/parent-dashboard')}>Dashboard</MenuItem>
+                            <MenuItem sx={{ color: purple[400] }} onClick={() => history.push('/profile')}>Profile</MenuItem>
+                            <MenuItem sx={{ color: purple[600] }} onClick={() => history.push('/new-job')}>Post Job</MenuItem>
+                            <MenuItem sx={{ color: purple[700] }} onClick={() => history.push('/create-schedule')}>Create Schedule</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
