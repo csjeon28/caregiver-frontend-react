@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import deleteParent from '../fetches/deleteParent'
 import { styled } from '@mui/material/styles'
@@ -9,9 +9,9 @@ import {
 } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
+import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import PetsIcon from '@mui/icons-material/Pets'
-import { purple, cyan } from '@mui/material/colors'
+import { purple, cyan, amber } from '@mui/material/colors'
 
 // const ParentCard = ({ parent }) => {
 // const history = useHistory()
@@ -41,11 +41,10 @@ const ParentCard = ({ parent }) => {
     }
 
     const renderSmoker = () => {
-        if (parent.smoker) return <SmokeFreeIcon />
+        if (parent.smoker) return <SmokingRoomsIcon sx={{ color: amber[400] }} />
     }
-
     const renderPets = () => {
-        if (parent.has_pets) return <PetsIcon />
+        if (parent.has_pets) return <PetsIcon sx={{ color: purple[400] }} />
     }
 
     return (
@@ -104,7 +103,6 @@ const ParentCard = ({ parent }) => {
     )
 }
 //             <Link to={`/${parent.id}/match-job`}>Match</Link>&nbsp;&nbsp;
-//         </div>
 
 ParentCard.propTypes = {
     parent: PropTypes.instanceOf(Object).isRequired
