@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
-import { Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 
 const CaregiverDashboard = ({ parents, error, getParents }) => {
     const usertoken = localStorage.getItem('token')
