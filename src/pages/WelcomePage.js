@@ -5,7 +5,7 @@ import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly'
 import Image from '../images/caregiver_background.jpeg'
 import { blue, pink, green } from '@mui/material/colors'
 
-const Header = () => {
+const WelcomePage = () => {
     const history = useHistory()
 
     return (
@@ -42,4 +42,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default WelcomePage
