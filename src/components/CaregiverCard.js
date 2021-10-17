@@ -8,10 +8,11 @@ import {
 } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
+import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
-import { purple, cyan } from '@mui/material/colors'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
+import { purple, cyan, amber, blue, green, red } from '@mui/material/colors'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -30,15 +31,18 @@ const CaregiverCard = ({ caregiver }) => {
     const handleExpandClick = () => {
         setExpanded(!expanded)
     }
-
     const renderSmoker = () => {
-        if (caregiver.smoker) return <SmokeFreeIcon />
+        if (caregiver.smoker) return <SmokingRoomsIcon sx={{ color: amber[400] }} />
     }
-
     const renderDriver = () => {
-        if (caregiver.ability_to_drive) return <DriveEtaIcon />
+        if (caregiver.ability_to_drive) return <DriveEtaIcon sx={{ color: blue[400] }} />
     }
-
+    const renderCPR = () => {
+        if (caregiver.CPR_cert) return <LocalHospitalIcon sx={{ color: green[600] }} />
+    }
+    const renderFirstAid = () => {
+        if (caregiver.first_aid_cert) return <MedicalServicesIcon sx={{ color: red[700] }} />
+    }
     return (
         <Grid item xs={12} sm={6} md={4} >
             <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, bgcolor: purple[50], color: cyan[600] }}>
@@ -78,9 +82,10 @@ const CaregiverCard = ({ caregiver }) => {
                         </Typography>
                         {renderSmoker()}
                         {renderDriver()}
+                        {renderCPR()}
+                        {renderFirstAid()}
                     </CardContent>
                 </Collapse>
-                {/* <h5>Certified: {caregiver.first_aid_cert}{caregiver.CPR_cert}</h5> */}
 
                 {/* <Link to={`/${caregiver.id}/match-job`}>Match</Link>&nbsp;&nbsp; */}
             </Card>
