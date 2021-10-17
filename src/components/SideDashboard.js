@@ -69,8 +69,8 @@ const SideDashboard = ({ userType }) => {
                     </Toolbar>
                 </AppBar>
                 <Grid container spacing={3} sx={{ padding: '2em' }}>
-                    <Chip label='Smoker' variant='outlined' icon={<SmokingRoomsIcon />} />
-                    <Chip label='Has Pets' variant='outlined' icon={<PetsIcon />} />
+                    <Chip label='Smoker' variant='outlined' color='warning' icon={<SmokingRoomsIcon />} />
+                    <Chip label='Has Pets' variant='outlined' color='secondary' icon={<PetsIcon />} />
                 </Grid>
             </Box>
         )
