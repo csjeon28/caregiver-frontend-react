@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Logout from './Logout'
-import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Chip, Grid, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly'
+import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
+import DriveEtaIcon from '@mui/icons-material/DriveEta'
+import PetsIcon from '@mui/icons-material/Pets'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
 import { purple, cyan, amber, deepOrange, teal } from '@mui/material/colors'
 
 const SideDashboard = ({ userType }) => {
@@ -63,6 +68,10 @@ const SideDashboard = ({ userType }) => {
                         <Logout />
                     </Toolbar>
                 </AppBar>
+                <Grid container spacing={3} sx={{ padding: '2em' }}>
+                    <Chip label='Smoker' variant='outlined' icon={<SmokingRoomsIcon />} />
+                    <Chip label='Has Pets' variant='outlined' icon={<PetsIcon />} />
+                </Grid>
             </Box>
         )
     }
@@ -110,6 +119,12 @@ const SideDashboard = ({ userType }) => {
                         <Logout />
                     </Toolbar>
                 </AppBar>
+                <Grid container spacing={2} sx={{ padding: '2em' }}>
+                    <Chip label='Smoker' variant='outlined' color='warning' icon={<SmokingRoomsIcon />} />
+                    <Chip label='Able to Drive' variant='outlined' color='info' icon={<DriveEtaIcon />} />
+                    <Chip label='CPR Certified' variant='outlined' color='success' icon={<LocalHospitalIcon />} />
+                    <Chip label='First Aid Certified' variant='outlined' color='error' icon={<MedicalServicesIcon />} />
+                </Grid>
             </Box>
         )
     }
