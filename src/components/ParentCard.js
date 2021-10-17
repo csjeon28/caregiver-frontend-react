@@ -1,23 +1,16 @@
-// import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import deleteParent from '../fetches/deleteParent'
 import { styled } from '@mui/material/styles'
-import { Box, Card, Container } from '@mui/material'
-import Grid from '@mui/material/Grid'
-import CardHeader from '@mui/material/CardHeader'
-import CardMedia from '@mui/material/CardMedia'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Collapse from '@mui/material/Collapse'
-import Avatar from '@mui/material/Avatar'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
+import {
+    Card, CardActions, CardContent, CardHeader, Collapse,
+    Divider, Grid, IconButton, Typography
+} from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
+import SmokeFreeIcon from '@mui/icons-material/SmokeFree'
+import PetsIcon from '@mui/icons-material/Pets'
 import { purple, cyan } from '@mui/material/colors'
 
 // const ParentCard = ({ parent }) => {
@@ -47,28 +40,28 @@ const ParentCard = ({ parent }) => {
         setExpanded(!expanded)
     }
 
+    const renderSmoker = () => {
+        if (parent.smoker) return <SmokeFreeIcon />
+    }
+
+    const renderPets = () => {
+        if (parent.has_pets) return <PetsIcon />
+    }
+
     return (
-        // <Container maxWidth='md' sx={{
-        //     display: 'flex',
-        //     flexDirection: 'column',
-        //     justifyContent: 'space-between',
-        //     padding: '1em',
-        // }}>
         <Grid item xs={12} sm={6} md={4} >
-            {/* <Box sx={{ minWidth: 200}}> */}
             <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, color: purple[300], bgcolor: cyan[100] }}>
                 <CardHeader
                     title={parent.first_name}
                     sx={{ textTransform: 'uppercase' }}
-                // subheader={parent.bio}
                 />
                 <Divider />
                 {/* <CardMedia
-        component="img"
-        height="194"
-        image=""
-        alt=""
-      /> */}
+                        component="img"
+                        height="194"
+                        image=""
+                        alt=""
+                    /> */}
                 <CardContent>
                     <Typography variant='body1' sx={{ color: purple[500] }}>
                         {parent.bio}
@@ -102,22 +95,16 @@ const ParentCard = ({ parent }) => {
                         <Typography variant='body2' color='text.secondary'>
                             Hourly Rate: &nbsp;${parent.hourly_rate} / hour
                         </Typography>
+                        {renderSmoker()}
+                        {renderPets()}
                     </CardContent>
                 </Collapse>
             </Card >
-            {/* </Box> */}
         </Grid>
     )
 }
-
-//             <h5>Smoker: {parent.smoker}</h5>
-//             <h5>I have pets: {parent.has_pets}</h5>
-//         </div>
-//         <div>
 //             <Link to={`/${parent.id}/match-job`}>Match</Link>&nbsp;&nbsp;
-
 //         </div>
-
 
 ParentCard.propTypes = {
     parent: PropTypes.instanceOf(Object).isRequired
