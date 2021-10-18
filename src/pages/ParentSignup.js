@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router'
-// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userSignup from '../fetches/userSignup'
 import Copyright from '../components/Copyright'
 import ContactsIcon from '@mui/icons-material/Contacts'
 import {
-    Alert, AlertTitle, Avatar, Box, Button, Container, CssBaseline, Divider, FormControl, FormControlLabel, FormGroup,
+    Alert, AlertTitle, Avatar, Box, Button, Container, CssBaseline, Divider, FormControl, FormControlLabel,
     Grid, InputAdornment, InputLabel, Link, MenuItem, OutlinedInput, Select, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -207,7 +206,6 @@ const ParentSignup = ({ userSignup, userData }) => {
                                             inputProps={{ 'aria-label': 'controlled' }} />}
                                         label='Pet Owner' />
                                 </Grid>
-
                                 <Button
                                     type='submit'
                                     fullWidth
