@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { Redirect, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import getAutoLogin from './fetches/getAutoLogin'
-import Header from './components/Header'
 import Login from './components/Login'
-import SideDashboard from './components//SideDashboard'
+import AppDashboard from './components/AppDashboard'
+import WelcomePage from './pages/WelcomePage'
 import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
 import CaregiverDashboard from './pages/CaregiverDashboard'
@@ -25,16 +25,13 @@ const App = ({ getAutoLogin, userData }) => {
     }
   }, [getAutoLogin, usertype, usertoken])
 
-  const caregiverHome = (usertype === 'caregiver') ? <Redirect to='/caregiver-dashboard' /> : <Redirect to='/parent-dashboard' />
-
   return (
-    <div className='App'>
-      {userData.isLoggedIn ? <Header /> : null}
-      {userData.isLoggedIn ? <SideDashboard userType={usertype} /> : null}
-      <SideDashboard />
+    <div>
+      {userData.isLoggedIn ? <AppDashboard userType={usertype} /> : null}
       <div>
         <Switch>
-          <Route exact path='/' render={() => (userData.isLoggedIn ? caregiverHome : <Redirect to='/login' />)} />
+          <Route exact path='/' component={WelcomePage} />
+          <Route exact path='/welcome' component={WelcomePage} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/caregiver/signup' component={CaregiverSignup} />
           <Route exact path='/parent/signup' component={ParentSignup} />
