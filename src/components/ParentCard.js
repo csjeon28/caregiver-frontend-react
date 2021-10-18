@@ -1,26 +1,16 @@
 import React, { useState } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import deleteParent from '../fetches/deleteParent'
 import { styled } from '@mui/material/styles'
 import {
-    Card, CardActions, CardContent, CardHeader, Collapse,
+    Button, Card, CardActions, CardContent, CardHeader, Collapse,
     Divider, Grid, IconButton, Typography
 } from '@mui/material'
-import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import PetsIcon from '@mui/icons-material/Pets'
+import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone'
 import { purple, cyan, amber } from '@mui/material/colors'
-
-// const ParentCard = ({ parent }) => {
-// const history = useHistory()
-// const handleDelete = () => {
-//     deleteParent(parent.id)
-//     // const url = `http://localhost:3001/parents/${parent.id}`
-//     // axios.delete(url)
-//     history.push('/caregiver-dashboard')
-// }
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -68,9 +58,11 @@ const ParentCard = ({ parent }) => {
                 </CardContent>
 
                 <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
-                    <IconButton aria-label='add to favorites'>
-                        <FavoriteIcon />
-                    </IconButton>
+                    <Button component={Link} variant='contained'>
+                        <Link to={`/${parent.id}/match-job`}>Match</Link>
+                    </Button>
+                    &nbsp;&nbsp;
+                    <LocationOnTwoToneIcon />
                     <Typography variant='body1' color='text.secondary'>
                         {parent.city}, {parent.state}
                     </Typography>
@@ -102,7 +94,6 @@ const ParentCard = ({ parent }) => {
         </Grid>
     )
 }
-//             <Link to={`/${parent.id}/match-job`}>Match</Link>&nbsp;&nbsp;
 
 ParentCard.propTypes = {
     parent: PropTypes.instanceOf(Object).isRequired
