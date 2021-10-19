@@ -5,17 +5,15 @@ import PropTypes from 'prop-types'
 import getSchedule from '../fetches/getSchedule'
 import ScheduleCard from '../components/ScheduleCard'
 
-const SchedulePage = ({ schedule, loading, error, getSchedule }) => {
+const SchedulePage = ({ schedule, error, getSchedule }) => {
     const { parentId } = useParams()
 
     useEffect(() => {
         getSchedule(parentId)
-    }, [])
+    }, [getSchedule, parentId])
 
     let personalizedSchedule
-    if (loading) {
-        personalizedSchedule = <div className='loading-container'><div className='loading' /></div>
-    }
+
     if (schedule) {
         personalizedSchedule = <ScheduleCard schedule={schedule} />
     }
@@ -23,7 +21,7 @@ const SchedulePage = ({ schedule, loading, error, getSchedule }) => {
         personalizedSchedule = (
             <div>
                 Error!
-                {error.message}
+                {error}
             </div>
         )
     }
@@ -37,7 +35,6 @@ const SchedulePage = ({ schedule, loading, error, getSchedule }) => {
 
 const mapStateToProps = state => ({
     schedule: state.scheduleData.schedule,
-    loading: state.scheduleData.loading,
     error: state.scheduleData.error
 })
 
@@ -47,7 +44,6 @@ const mapDispatchToProps = {
 
 SchedulePage.propTypes = {
     schedule: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
-    loading: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
     getSchedule: PropTypes.func.isRequired
 }
