@@ -16,8 +16,8 @@ const AppDashboard = ({ userType }) => {
     const history = useHistory()
     const [anchorEl, setAnchorEl] = useState(null)
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget)
+    const handleMenu = (e) => {
+        setAnchorEl(e.currentTarget)
     }
 
     const handleClose = () => {
@@ -63,7 +63,7 @@ const AppDashboard = ({ userType }) => {
                         >
                             <MenuItem sx={{ color: teal[200] }} onClick={() => history.push('/caregiver-dashboard')}>Dashboard</MenuItem>
                             <MenuItem sx={{ color: teal[500] }} onClick={() => history.push('/profile')}>Profile</MenuItem>
-                            <MenuItem sx={{ color: teal[800] }} onClick={() => history.push('/jobs')}>My Jobs</MenuItem>
+                            <MenuItem sx={{ color: teal[800] }} onClick={() => history.push('/job-matches')}>My Jobs</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
@@ -114,7 +114,6 @@ const AppDashboard = ({ userType }) => {
                             <MenuItem sx={{ color: purple[200] }} onClick={() => history.push('/parent-dashboard')}>Dashboard</MenuItem>
                             <MenuItem sx={{ color: purple[400] }} onClick={() => history.push('/profile')}>Profile</MenuItem>
                             <MenuItem sx={{ color: purple[600] }} onClick={() => history.push('/new-job')}>Post Job</MenuItem>
-                            <MenuItem sx={{ color: purple[700] }} onClick={() => history.push('/create-schedule')}>Create Schedule</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
