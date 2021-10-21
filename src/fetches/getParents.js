@@ -1,10 +1,10 @@
 import axios from 'axios'
 import * as action from '../actions/parentActions'
+import { API_ROOT } from '../constants/index'
 
 function getParents() {
     return dispatch => {
-        dispatch(action.getParentsLoading())
-        const url = 'http://localhost:3001/parents'
+        const url = `${API_ROOT}/parents`
         axios
             .get(url)
             .then(resp => dispatch(action.getParents(resp.data)))
