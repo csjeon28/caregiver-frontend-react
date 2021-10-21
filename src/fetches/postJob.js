@@ -1,26 +1,27 @@
-import axios from 'axios'
+import { API_ROOT, HEADERS } from '../constants/index'
 
-function postJob(caregiverId, object) {
-    const url = `http://localhost:3001/caregivers/${caregiverId}/jobs`
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    //   },
-    //   body: JSON.stringify(object),
-    // }).then(res => res.json())
-
-    axios
-        .post(url, {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
+function postJob(parentId, object) {
+    const url = `${API_ROOT}/parents/${parentId}/jobs`
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            HEADERS,
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        })
-        .then(resp => {
-            localStorage.setItem('token', resp.data.token)
-        })
+        },
+        body: JSON.stringify(object),
+    }).then(resp => resp.json())
+
+    // axios
+    //     .post(url, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //         }
+    //     })
+    //     .then(resp => {
+    //         localStorage.setItem('token', resp.data.token)
+    //     })
 }
 
 export default postJob
