@@ -1,30 +1,23 @@
 import axios from 'axios';
 import * as action from '../actions/jobActions'
+import { API_ROOT } from '../constants/index'
 
 function getCaregiverMatches(id) {
     return dispatch => {
-        dispatch(action.getCaregiverMatchesLoading())
-        const url = `http://localhost:3001/caregivers/${id}/jobs`
+        const url = `${API_ROOT}/caregivers/${id}/jobs`
         axios
             .get(url)
-            .then(resp => {
-                const matchList = resp.data
-                dispatch(action.getCaregiverMatches(matchList))
-            })
+            .then(resp => { dispatch(action.getCaregiverMatches(resp.data)) })
             .catch(error => dispatch(action.getCaregiverMatchesFail(error)))
     };
 }
 
 function getParentMatches(id) {
     return dispatch => {
-        dispatch(action.getParentMatchesLoading())
-        const url = `http://localhost:3001/parents/${id}/jobs`
+        const url = `${API_ROOT}/parents/${id}/jobs`
         axios
             .get(url)
-            .then(resp => {
-                const matchList = resp.data
-                dispatch(action.getParentMatches(matchList))
-            })
+            .then(resp => dispatch(action.getParentMatches(resp.data)))
             .catch(error => dispatch(action.getParentMatchesFail(error)))
     }
 }
