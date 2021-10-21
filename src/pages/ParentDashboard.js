@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CaregiverCard from '../components/CaregiverCard'
 import getCaregivers from '../fetches/getCaregivers'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
+import { cyan } from '@mui/material/colors'
 
-const ParentDashboard = ({ caregivers, error, getCaregivers }) => {
+const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     const usertoken = localStorage.getItem('token')
 
     useEffect(() => {
@@ -29,15 +30,26 @@ const ParentDashboard = ({ caregivers, error, getCaregivers }) => {
     }
 
     return (
-        <Grid container spacing={3} sx={{ padding: '2em' }}>
-            {caregiverCard}
-        </Grid>
+        <>
+            {/* // style this and add it to caregiver dashboard as well */}
+            <Typography variant='h4' component='div'
+                sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
+                Welcome back {userData.user.parent.first_name}&nbsp;!
+            </Typography>
+            <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: cyan[700], color: 'white' }}>
+                Browse Caregivers:
+            </Typography>
+            <Grid container spacing={3} sx={{ padding: '2em' }}>
+                {caregiverCard}
+            </Grid>
+        </>
     )
 }
 
 const mapStateToProps = state => ({
     caregivers: state.caregiverData.caregivers,
-    error: state.caregiverData.error
+    error: state.caregiverData.error,
+    userData: state.userData,
 })
 
 const mapDispatchToProps = {
@@ -47,7 +59,8 @@ const mapDispatchToProps = {
 ParentDashboard.propTypes = {
     caregivers: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
     error: PropTypes.string.isRequired,
-    getCaregivers: PropTypes.func.isRequired
+    getCaregivers: PropTypes.func.isRequired,
+    userData: PropTypes.instanceOf(Object).isRequired,
 }
 // import { getParentMatches } from '../fetches/getJobMatches'
 // import JobMatchCard from '../components/JobMatchCard'
