@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
+import { purple } from '@mui/material/colors'
 
-const CaregiverDashboard = ({ parents, error, getParents }) => {
+const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
     const usertoken = localStorage.getItem('token')
 
     useEffect(() => {
@@ -29,15 +30,25 @@ const CaregiverDashboard = ({ parents, error, getParents }) => {
     }
 
     return (
-        <Grid container spacing={3} sx={{ padding: '2em' }}>
-            {parentCard}
-        </Grid>
+        <>
+            <Typography variant='h4' component='div'
+                sx={{ ml: 4, color: purple[700], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
+                Welcome back {userData.user.caregiver.first_name}&nbsp;!
+            </Typography>
+            <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: purple[700], color: 'white' }}>
+                Browse Parents:
+            </Typography>
+            <Grid container spacing={3} sx={{ padding: '2em' }}>
+                {parentCard}
+            </Grid>
+        </>
     )
 }
 
 const mapStateToProps = state => ({
     parents: state.parentData.parents,
-    error: state.parentData.error
+    error: state.parentData.error,
+    userData: state.userData
 })
 
 const mapDispatchToProps = {
@@ -47,7 +58,8 @@ const mapDispatchToProps = {
 CaregiverDashboard.propTypes = {
     parents: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
     error: PropTypes.string.isRequired,
-    getParents: PropTypes.func.isRequired
+    getParents: PropTypes.func.isRequired,
+    userData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaregiverDashboard)
