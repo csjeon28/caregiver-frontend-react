@@ -62,8 +62,7 @@ const AppDashboard = ({ userType }) => {
                             onClose={handleClose}
                         >
                             <MenuItem sx={{ color: teal[200] }} onClick={() => history.push('/caregiver-dashboard')}>Dashboard</MenuItem>
-                            {/* <MenuItem sx={{ color: teal[500] }} onClick={() => history.push('/profile')}>Profile</MenuItem> */}
-                            <MenuItem sx={{ color: teal[800] }} onClick={() => history.push('/job-matches')}>My Jobs</MenuItem>
+                            <MenuItem sx={{ color: teal[600] }} onClick={() => history.push('/job-matches')}>My Jobs</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
@@ -112,8 +111,7 @@ const AppDashboard = ({ userType }) => {
                             onClose={handleClose}
                         >
                             <MenuItem sx={{ color: purple[200] }} onClick={() => history.push('/parent-dashboard')}>Dashboard</MenuItem>
-                            {/* <MenuItem sx={{ color: purple[400] }} onClick={() => history.push('/profile')}>Profile</MenuItem> */}
-                            <MenuItem sx={{ color: purple[600] }} onClick={() => history.push('/new-job')}>Post Job</MenuItem>
+                            <MenuItem sx={{ color: purple[600] }} onClick={() => history.push('/post-job')}>Post Job</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
