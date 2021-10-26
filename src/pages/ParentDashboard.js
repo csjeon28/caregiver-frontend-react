@@ -30,12 +30,14 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
         )
     }
 
+    const welcomeName = userData.user ? userData.user.parent.first_name : null
+
     return (
         <>
             <AppDashboard userData={userData} />
             <Typography variant='h4' component='div'
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
-                Welcome back {userData.user.parent.first_name}&nbsp;!
+                Welcome back {welcomeName}&nbsp;!
             </Typography>
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: cyan[700], color: 'white' }}>
                 Browse Caregivers:
