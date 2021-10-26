@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userSignup from '../fetches/userSignup'
@@ -14,7 +15,7 @@ import { teal, blue } from '@mui/material/colors'
 const theme = createTheme()
 
 const CaregiverSignup = ({ userSignup, userData }) => {
-
+    const history = useHistory()
     const [user, setUser] = useState({
         smoker: false,
         CPR_cert: false,
@@ -39,9 +40,10 @@ const CaregiverSignup = ({ userSignup, userData }) => {
         const userObject = { [userType]: user }
         userSignup(userObject, userType)
         setUser(user)
+        history.push('/caregiver-dashboard')
     }
 
-    return (
+    let personalizedSignup = (
         <ThemeProvider theme={theme}>
             <Container component='main' maxWidth='xs'>
                 <CssBaseline />
@@ -239,6 +241,12 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                 </Box>
             </Container>
         </ThemeProvider >
+    )
+
+    return (
+        <div>
+            {personalizedSignup}
+        </div>
     )
 }
 
