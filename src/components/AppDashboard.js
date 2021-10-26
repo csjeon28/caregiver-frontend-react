@@ -12,7 +12,7 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
 import { purple, cyan, amber, deepOrange, teal } from '@mui/material/colors'
 
-const AppDashboard = ({ userType }) => {
+const AppDashboard = ({ userData }) => {
     const history = useHistory()
     const [anchorEl, setAnchorEl] = useState(null)
 
@@ -25,8 +25,7 @@ const AppDashboard = ({ userType }) => {
     }
 
     let personalAppDashboard
-
-    if (userType === 'caregiver') {
+    if (userData.userType === 'caregiver') {
         personalAppDashboard = (
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position='static' sx={{ bgcolor: purple[200], color: cyan[50] }}>
@@ -75,7 +74,7 @@ const AppDashboard = ({ userType }) => {
         )
     }
 
-    if (userType === 'parent') {
+    if (userData.userType === 'parent') {
         personalAppDashboard = (
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position='static' sx={{ color: purple[300], bgcolor: cyan[100] }}>
@@ -134,7 +133,7 @@ const AppDashboard = ({ userType }) => {
 }
 
 AppDashboard.propTypes = {
-    userType: PropTypes.string
+    userData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default AppDashboard
