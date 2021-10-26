@@ -4,18 +4,15 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import getAutoLogin from './fetches/getAutoLogin'
 import Login from './components/Login'
-import AppDashboard from './components/AppDashboard'
 import WelcomePage from './pages/WelcomePage'
 import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
 import CaregiverDashboard from './pages/CaregiverDashboard'
 import ParentDashboard from './pages/ParentDashboard'
 import CaregiverJobMatches from './components/CaregiverJobMatches'
-import CreateSchedule from './components/CreateSchedule'
-import SchedulePage from './pages/SchedulePage'
 import CreateJob from './components/CreateJob'
 
-const App = ({ getAutoLogin, userData }) => {
+const App = ({ getAutoLogin }) => {
   const usertype = localStorage.getItem('usertype')
   const usertoken = localStorage.getItem('token')
 
@@ -27,7 +24,6 @@ const App = ({ getAutoLogin, userData }) => {
 
   return (
     <div>
-      {userData.isLoggedIn ? <AppDashboard userType={usertype} /> : null}
       <div>
         <Switch>
           <Route exact path='/' component={WelcomePage} />
@@ -38,9 +34,7 @@ const App = ({ getAutoLogin, userData }) => {
           <Route exact path='/caregiver-dashboard' component={CaregiverDashboard} />
           <Route exact path='/parent-dashboard' component={ParentDashboard} />
           <Route exact path='/job-matches' component={CaregiverJobMatches} />
-          <Route exact path='/create-schedule' component={CreateSchedule} />
-          <Route exact path='/:parentId/match-job' component={SchedulePage} />
-          <Route exact path='/new-job' component={CreateJob} />
+          <Route exact path='/post-job' component={CreateJob} />
         </Switch>
       </div>
     </div>
