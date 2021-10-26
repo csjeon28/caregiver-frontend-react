@@ -31,7 +31,6 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
 
     return (
         <>
-            {/* // style this and add it to caregiver dashboard as well */}
             <Typography variant='h4' component='div'
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {userData.user.parent.first_name}&nbsp;!
