@@ -7,7 +7,7 @@ function getCaregiverMatches(id) {
         const url = `${API_ROOT}/caregivers/${id}/jobs`
         axios
             .get(url)
-            .then(resp => { dispatch(action.getCaregiverMatches(resp.data)) })
+            .then(resp => dispatch(action.getCaregiverMatches(resp.data)))
             .catch(error => dispatch(action.getCaregiverMatchesFail(error)))
     };
 }

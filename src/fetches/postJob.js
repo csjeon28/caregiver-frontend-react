@@ -1,27 +1,22 @@
+import axios from 'axios'
+import * as action from '../actions/jobActions'
 import { API_ROOT, HEADERS } from '../constants/index'
 
-function postJob(parentId, object) {
-    const url = `${API_ROOT}/parents/${parentId}/jobs`
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            HEADERS,
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify(object),
-    }).then(resp => resp.json())
-
-    // axios
-    //     .post(url, {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json',
-    //             'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    //         }
-    //     })
-    //     .then(resp => {
-    //         localStorage.setItem('token', resp.data.token)
-    //     })
+function postJob(parentId) {
+    return dispatch => {
+        const url = `${API_ROOT}/parents/${parentId}/jobs`
+        axios
+            .post(url, {
+                headers: {
+                    HEADERS,
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            })
+            .then(resp => {
+                localStorage.setItem('token', resp.data.token)
+                dispatch(action.postJob(resp.data))
+            })
+    }
 }
 
 export default postJob
