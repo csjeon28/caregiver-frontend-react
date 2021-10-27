@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userSignup from '../fetches/userSignup'
 import Copyright from '../components/Copyright'
+import PasswordReq from '../components/PasswordReq'
 import ContactsIcon from '@mui/icons-material/Contacts'
 import {
     Alert, AlertTitle, Avatar, Box, Button, Container, CssBaseline, Divider, FormControl,
@@ -15,7 +16,6 @@ import { teal, blue } from '@mui/material/colors'
 const theme = createTheme()
 
 const CaregiverSignup = ({ userSignup, userData }) => {
-    const history = useHistory()
     const [user, setUser] = useState({
         smoker: false,
         CPR_cert: false,
@@ -40,8 +40,9 @@ const CaregiverSignup = ({ userSignup, userData }) => {
         const userObject = { [userType]: user }
         userSignup(userObject, userType)
         setUser(user)
-        history.push('/caregiver-dashboard')
     }
+
+    const renderErrors = userData.error.map((error, index) => { return (<li key={index}>{error}</li>) })
 
     let personalizedSignup = (
         <ThemeProvider theme={theme}>
@@ -98,6 +99,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                     onChange={handleChange}
                                 />
                             </Grid>
+                            <PasswordReq />
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -235,13 +237,15 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                 Log In
                             </Link>
                         </Typography>
-                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.error}</Alert>) : null}
+                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{renderErrors}</Alert>) : null}
                         <Copyright sx={{ mt: 8, mb: 4 }} />
                     </Box>
                 </Box>
             </Container>
         </ThemeProvider >
     )
+
+    if (userData.token) { personalizedSignup = <Redirect to='/caregiver-dashboard' /> }
 
     return (
         <div>
