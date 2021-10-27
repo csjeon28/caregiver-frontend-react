@@ -1,5 +1,6 @@
-export const getCaregiverMatchesLoading = () => ({
-    type: 'GET_CAREGIVER_JOB_LOADING',
+export const postJob = data => ({
+    type: 'POST_JOB',
+    payload: data
 })
 
 export const getCaregiverMatches = data => ({
@@ -10,10 +11,6 @@ export const getCaregiverMatches = data => ({
 export const getCaregiverMatchesFail = error => ({
     type: 'GET_CAREGIVER_JOB_FAIL',
     payload: error,
-})
-
-export const getParentMatchesLoading = () => ({
-    type: 'GET_PARENT_JOB_LOADING',
 })
 
 export const getParentMatches = data => ({
