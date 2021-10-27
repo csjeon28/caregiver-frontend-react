@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import userSignup from '../fetches/userSignup'
 import Copyright from '../components/Copyright'
+import PasswordReq from '../components/PasswordReq'
 import ContactsIcon from '@mui/icons-material/Contacts'
 import {
     Alert, AlertTitle, Avatar, Box, Button, Container, CssBaseline, Divider, FormControl, FormControlLabel,
@@ -15,7 +16,6 @@ import { pink, blue } from '@mui/material/colors'
 const theme = createTheme()
 
 const ParentSignup = ({ userSignup, userData }) => {
-    const history = useHistory()
     const [user, setUser] = useState({
         smoker: false,
         has_pets: false,
@@ -40,7 +40,6 @@ const ParentSignup = ({ userSignup, userData }) => {
         const userObject = { [userType]: user }
         userSignup(userObject, userType)
         setUser(user)
-        history.push('/parent-dashboard')
     }
 
     let personalizedSignup = (
@@ -98,6 +97,7 @@ const ParentSignup = ({ userSignup, userData }) => {
                                     onChange={handleChange}
                                 />
                             </Grid>
+                            <PasswordReq />
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -162,7 +162,6 @@ const ParentSignup = ({ userSignup, userData }) => {
                                     </Select>
                                 </FormControl>
                             </Grid>
-
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
@@ -222,13 +221,16 @@ const ParentSignup = ({ userSignup, userData }) => {
                                 Log In
                             </Link>
                         </Typography>
-                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{userData.error}</Alert>) : null}
+                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>
+                            {userData.error.map((error, index) => { return (<li key={index}>{error}</li>) })}</Alert>) : null}
                         <Copyright sx={{ mt: 8, mb: 4 }} />
                     </Box>
                 </Box>
             </Container>
         </ThemeProvider>
     )
+
+    if (userData.token) { personalizedSignup = <Redirect to='/parent-dashboard' /> }
 
     return (
         <div>
