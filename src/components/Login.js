@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
-// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Copyright from './Copyright'
@@ -168,11 +167,9 @@ const Login = ({ userLogin, userData }) => {
     if (userData.userType === 'parent' && !userData.user.error) { personalizedLogin = <Redirect to='/parent-dashboard' /> }
 
     return (
-        <section>
-            <div>
-                {personalizedLogin}
-            </div>
-        </section>
+        <div>
+            {personalizedLogin}
+        </div>
     )
 }
 
