@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import getAutoLogin from './fetches/getAutoLogin'
-import Login from './components/Login'
+import Login from './pages/Login'
 import WelcomePage from './pages/WelcomePage'
 import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
@@ -33,7 +33,6 @@ const App = ({ getAutoLogin }) => {
           <Route exact path='/parent/signup' component={ParentSignup} />
           <Route exact path='/caregiver-dashboard' component={CaregiverDashboard} />
           <Route exact path='/parent-dashboard' component={ParentDashboard} />
-          <Route exact path='/job-matches' component={CaregiverJobMatches} />
           <Route exact path='/post-job' component={CreateJob} />
         </Switch>
       </div>
