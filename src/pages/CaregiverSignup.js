@@ -42,8 +42,6 @@ const CaregiverSignup = ({ userSignup, userData }) => {
         setUser(user)
     }
 
-    const renderErrors = userData.error.map((error, index) => { return (<li key={index}>{error}</li>) })
-
     let personalizedSignup = (
         <ThemeProvider theme={theme}>
             <Container component='main' maxWidth='xs'>
@@ -218,8 +216,6 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                         label='First Aid Certified' />
                                 </FormGroup>
                             </Grid>
-
-
                             <Button
                                 type='submit'
                                 fullWidth
@@ -237,7 +233,8 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                 Log In
                             </Link>
                         </Typography>
-                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>{renderErrors}</Alert>) : null}
+                        {userData.error ? (<Alert severity='error'><AlertTitle>Error</AlertTitle>
+                            {userData.error.map((error, index) => { return (<li key={index}>{error}</li>) })}</Alert>) : null}
                         <Copyright sx={{ mt: 8, mb: 4 }} />
                     </Box>
                 </Box>
