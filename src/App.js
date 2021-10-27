@@ -9,7 +9,7 @@ import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
 import CaregiverDashboard from './pages/CaregiverDashboard'
 import ParentDashboard from './pages/ParentDashboard'
-import PostJob from './components/PostJob'
+import PostJob from './pages/PostJob'
 
 const App = ({ getAutoLogin }) => {
   const usertype = localStorage.getItem('usertype')
