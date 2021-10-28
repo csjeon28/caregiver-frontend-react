@@ -2,11 +2,11 @@ import axios from 'axios'
 import * as action from '../actions/jobActions'
 import { API_ROOT, HEADERS } from '../constants/index'
 
-function postJob(parentId) {
+function postJob(jobData, parentId) {
     return dispatch => {
         const url = `${API_ROOT}/parents/${parentId}/jobs`
         axios
-            .post(url, {
+            .post(url, jobData, {
                 headers: {
                     HEADERS,
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -14,7 +14,7 @@ function postJob(parentId) {
             })
             .then(resp => {
                 localStorage.setItem('token', resp.data.token)
-                dispatch(action.postJob(resp.data))
+                dispatch(action.postNewJob(resp.data))
             })
     }
 }
