@@ -110,7 +110,8 @@ const AppDashboard = ({ userData }) => {
                             onClose={handleClose}
                         >
                             <MenuItem sx={{ color: purple[200] }} onClick={() => history.push('/parent-dashboard')}>Dashboard</MenuItem>
-                            <MenuItem sx={{ color: purple[600] }} onClick={() => history.push('/post-job')}>Post Job</MenuItem>
+                            <MenuItem sx={{ color: purple[500] }} onClick={() => history.push('/post-job')}>Post Job</MenuItem>
+                            <MenuItem sx={{ color: purple[900] }} onClick={() => history.push('/job-listings')}>Job Listings</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
