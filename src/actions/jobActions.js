@@ -1,4 +1,4 @@
-export const postJob = data => ({
+export const postNewJob = data => ({
     type: 'POST_JOB',
     payload: data
 })
