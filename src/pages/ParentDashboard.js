@@ -4,8 +4,12 @@ import PropTypes from 'prop-types'
 import AppDashboard from '../components/AppDashboard'
 import CaregiverCard from '../components/CaregiverCard'
 import getCaregivers from '../fetches/getCaregivers'
-import { Grid, Typography } from '@mui/material'
+import { Chip, Grid, Typography } from '@mui/material'
 import { cyan } from '@mui/material/colors'
+import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
+import DriveEtaIcon from '@mui/icons-material/DriveEta'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
 
 const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     const usertoken = localStorage.getItem('token')
@@ -35,6 +39,12 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     return (
         <>
             <AppDashboard userData={userData} />
+            <Grid container spacing={2} sx={{ padding: '2em', mb: -2 }}>
+                <Chip label='Smoker' variant='outlined' color='warning' icon={<SmokingRoomsIcon />} />
+                <Chip label='Able to Drive' variant='outlined' color='info' icon={<DriveEtaIcon />} />
+                <Chip label='CPR Certified' variant='outlined' color='success' icon={<LocalHospitalIcon />} />
+                <Chip label='First Aid Certified' variant='outlined' color='error' icon={<MedicalServicesIcon />} />
+            </Grid>
             <Typography variant='h4' component='div'
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
