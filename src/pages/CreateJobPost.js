@@ -162,8 +162,7 @@ const CreateJobPost = ({ postJob, user }) => {
 }
 
 const mapStateToProps = state => ({
-    user: state.userData.user,
-    jobData: state.jobData.jobs
+    user: state.userData.user
 })
 
 const mapDispatchToProps = {
@@ -172,7 +171,7 @@ const mapDispatchToProps = {
 
 CreateJobPost.propTypes = {
     user: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.instanceOf(Object)]).isRequired,
-    postJob: PropTypes.func.isRequired
+    postJob: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJobPost)
