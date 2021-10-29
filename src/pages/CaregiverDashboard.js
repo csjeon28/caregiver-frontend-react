@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
-import { Grid, Typography } from '@mui/material'
+import { Chip, Grid, Typography } from '@mui/material'
 import { purple } from '@mui/material/colors'
 import AppDashboard from '../components/AppDashboard'
+import PetsIcon from '@mui/icons-material/Pets'
+import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 
 const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
     const usertoken = localStorage.getItem('token')
@@ -35,6 +37,10 @@ const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
     return (
         <>
             <AppDashboard userData={userData} />
+            <Grid container spacing={3} sx={{ padding: '2em', mb: -2 }}>
+                <Chip label='Smoker' variant='outlined' color='warning' icon={<SmokingRoomsIcon />} />
+                <Chip label='Has Pets' variant='outlined' color='secondary' icon={<PetsIcon />} />
+            </Grid>
             <Typography variant='h4' component='div'
                 sx={{ ml: 4, color: purple[700], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
