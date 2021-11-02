@@ -8,7 +8,6 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import { purple, cyan, blue } from '@mui/material/colors'
-import getJobListings from '../fetches/getJobListings'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -48,7 +47,8 @@ const JobCard = ({ job }) => {
                         Days Needed: {job.specific_days_needed}
                     </Typography>
                 </CardContent>
-                <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
+                <CardActions disableSpacing sx={{ marginTop: 'auto', ml: 1 }}>
+                    {renderDriver()}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -66,7 +66,6 @@ const JobCard = ({ job }) => {
                         <Typography variant='body2' color='text.secondary'>
                             Number of Children: {job.number_of_children}
                         </Typography>
-                        {renderDriver()}
                     </CardContent>
                 </Collapse>
             </Card>

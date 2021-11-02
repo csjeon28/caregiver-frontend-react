@@ -10,9 +10,8 @@ const CaregiverJobMatches = ({ jobData, getCaregiverMatches, userData }) => {
     }, [getCaregiverMatches, userData.user.caregiver.id])
 
     let customJobMatch
-    if (jobData.loading) {
-        customJobMatch = <div className='loading-container'><div className='loading' /></div>
-    }
+
+    console.log(jobData)
     if (jobData.jobs) {
         customJobMatch = (
             <div>
@@ -26,7 +25,7 @@ const CaregiverJobMatches = ({ jobData, getCaregiverMatches, userData }) => {
         customJobMatch = (
             <div>
                 Error
-                {jobData.error.message}
+                {jobData.error}
             </div>
         )
     }
@@ -44,7 +43,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    getCaregiverMatches,
+    getCaregiverMatches
 }
 
 CaregiverJobMatches.propTypes = {
