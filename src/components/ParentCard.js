@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import {
@@ -45,12 +44,6 @@ const ParentCard = ({ parent }) => {
                     sx={{ textTransform: 'uppercase' }}
                 />
                 <Divider />
-                {/* <CardMedia
-                        component="img"
-                        height="194"
-                        image=""
-                        alt=""
-                    /> */}
                 <CardContent>
                     <Typography variant='body1' sx={{ color: purple[500] }}>
                         {parent.bio}
@@ -58,9 +51,10 @@ const ParentCard = ({ parent }) => {
                 </CardContent>
 
                 <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
-                    <Button component={Link} variant='contained'>
-                        <Link to={`/${parent.id}/match-job`}>Match</Link>
-                    </Button>
+                    {/* //figure out how to link matching a job with parents */}
+                    {/* <Button variant='contained' sx={{ bgcolor: cyan[300] }}> */}
+                    {/* <Link href={`/${parent.id}/match-job`}>Interested?</Link> */}
+                    {/* </Button> */}
                     &nbsp;&nbsp;
                     <LocationOnTwoToneIcon />
                     <Typography variant='body1' color='text.secondary'>
@@ -90,7 +84,7 @@ const ParentCard = ({ parent }) => {
                         {renderPets()}
                     </CardContent>
                 </Collapse>
-            </Card >
+            </Card>
         </Grid>
     )
 }
