@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import postJob from '../fetches/postJob'
+import AppDashboard from '../components/AppDashboard'
 import WorkIcon from '@mui/icons-material/Work'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import {
@@ -10,11 +11,11 @@ import {
     Grid, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Switch, TextField, Typography
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { purple, blue } from '@mui/material/colors'
+import { cyan, purple } from '@mui/material/colors'
 
 const theme = createTheme()
 
-const CreateJobPost = ({ postJob, user }) => {
+const CreateJobPost = ({ postJob, user, userData }) => {
     const history = useHistory()
     const [job, setJob] = useState({
         number_of_children: '',
@@ -54,7 +55,7 @@ const CreateJobPost = ({ postJob, user }) => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: purple[600] }}>
+                    <Avatar sx={{ m: 1, bgcolor: purple[400] }}>
                         <WorkIcon />
                     </Avatar>
                     <Typography component='h1' variant='h5' sx={{ color: purple[400] }}>
@@ -140,12 +141,12 @@ const CreateJobPost = ({ postJob, user }) => {
                                 type='submit'
                                 fullWidth
                                 variant='contained'
-                                sx={{ mt: 3, mb: 2, ml: 4, mr: 2, bgcolor: blue[900] }}
+                                sx={{ mt: 3, mb: 2, ml: 4, mr: 2, bgcolor: purple[700], fontWeight: 600, letterSpacing: 2 }}
                                 onClick={handleSubmit}
                             >
                                 Post
                             </Button>
-                            <Button sx={{ ml: 2 }} onClick={() => history.push('/parent-dashboard')} startIcon={<ArrowBackIcon />}>Go Back</Button>
+                            <Button sx={{ ml: 2, color: cyan[700] }} onClick={() => history.push('/parent-dashboard')} startIcon={<ArrowBackIcon />}>Go Back</Button>
                         </Grid>
                         <Divider />
                     </Box>
@@ -156,13 +157,15 @@ const CreateJobPost = ({ postJob, user }) => {
 
     return (
         <div>
+            <AppDashboard userData={userData} />
             {personalizedJobForm}
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    user: state.userData.user
+    user: state.userData.user,
+    userData: state.userData,
 })
 
 const mapDispatchToProps = {
@@ -172,6 +175,7 @@ const mapDispatchToProps = {
 CreateJobPost.propTypes = {
     user: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.instanceOf(Object)]).isRequired,
     postJob: PropTypes.func.isRequired,
+    userData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJobPost)
