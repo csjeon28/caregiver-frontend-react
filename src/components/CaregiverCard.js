@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import {
-    Card, CardActions, CardContent, CardHeader, Collapse,
+    Button, Card, CardActions, CardContent, CardHeader, Collapse,
     Divider, Grid, IconButton, Typography
 } from '@mui/material'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
@@ -57,9 +57,12 @@ const CaregiverCard = ({ caregiver }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
-                    <IconButton aria-label='add to favorites'>
-                        <FavoriteIcon />
-                    </IconButton>
+                    {/* <Button component={Link} variant='contained' sx={{ bgcolor: purple[100] }}> */}
+                    {/* //figure out how to link matching a job with caregivers */}
+                    {/* <Link to={`/${caregiver.id}/match-job`}>Match</Link> */}
+                    {/* </Button> */}
+                    &nbsp;&nbsp;
+                    <LocationOnTwoToneIcon />
                     <Typography variant='body1' color='text.secondary'>
                         {caregiver.city}, {caregiver.state}
                     </Typography>
@@ -86,8 +89,6 @@ const CaregiverCard = ({ caregiver }) => {
                         {renderFirstAid()}
                     </CardContent>
                 </Collapse>
-
-                {/* <Link to={`/${caregiver.id}/match-job`}>Match</Link>&nbsp;&nbsp; */}
             </Card>
         </Grid>
     )
