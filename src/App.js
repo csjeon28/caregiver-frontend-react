@@ -9,7 +9,8 @@ import CaregiverSignup from './pages/CaregiverSignup'
 import ParentSignup from './pages/ParentSignup'
 import CaregiverDashboard from './pages/CaregiverDashboard'
 import ParentDashboard from './pages/ParentDashboard'
-import PostJob from './pages/PostJob'
+import CreateJobPost from './pages/CreateJobPost'
+import JobListings from './pages/JobListings'
 
 const App = ({ getAutoLogin }) => {
   const usertype = localStorage.getItem('usertype')
@@ -32,7 +33,8 @@ const App = ({ getAutoLogin }) => {
           <Route exact path='/parent/signup' component={ParentSignup} />
           <Route exact path='/caregiver-dashboard' component={CaregiverDashboard} />
           <Route exact path='/parent-dashboard' component={ParentDashboard} />
-          <Route exact path='/post-job' component={PostJob} />
+          <Route exact path='/post-job' component={CreateJobPost} />
+          <Route exact path='/job-listings' component={JobListings} />
         </Switch>
       </div>
     </div>
