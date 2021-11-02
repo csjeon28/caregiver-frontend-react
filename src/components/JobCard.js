@@ -55,6 +55,7 @@ const JobCard = ({ job }) => {
                         aria-expanded={expanded}
                         aria-label='show more'
                     >
+                        <Typography sx={{ textTransform: 'uppercase', fontSize: 12 }}>View pay rate</Typography>
                         <ExpandMoreIcon />
                     </ExpandMore>
                 </CardActions>
