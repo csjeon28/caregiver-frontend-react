@@ -48,8 +48,7 @@ const mapDispatchToProps = {
 JobListings.propTypes = {
     getJobListings: PropTypes.func.isRequired,
     userData: PropTypes.instanceOf(Object).isRequired,
-    jobData: PropTypes.instanceOf(Object).isRequired,
-    jobs: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
+    jobData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobListings)
