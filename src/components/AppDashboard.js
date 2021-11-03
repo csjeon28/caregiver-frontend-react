@@ -56,7 +56,8 @@ const AppDashboard = ({ userData }) => {
                             onClose={handleClose}
                         >
                             <MenuItem sx={{ color: teal[200] }} onClick={() => history.push('/caregiver-dashboard')}>Dashboard</MenuItem>
-                            <MenuItem sx={{ color: teal[600] }} onClick={() => history.push('/job-matches')}>My Jobs</MenuItem>
+                            <MenuItem sx={{ color: teal[500] }} onClick={() => history.push('/job-matches')}>My Jobs</MenuItem>
+                            <MenuItem sx={{ color: teal[800] }} onClick={() => history.push('/all-jobs')}>All Available Jobs</MenuItem>
                         </Menu>
                         <Logout />
                     </Toolbar>
