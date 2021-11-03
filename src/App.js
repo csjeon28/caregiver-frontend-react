@@ -11,6 +11,7 @@ import CaregiverDashboard from './pages/CaregiverDashboard'
 import ParentDashboard from './pages/ParentDashboard'
 import CreateJobPost from './pages/CreateJobPost'
 import JobListings from './pages/JobListings'
+import AllJobs from './pages/AllJobs'
 
 const App = ({ getAutoLogin }) => {
   const usertype = localStorage.getItem('usertype')
@@ -35,6 +36,7 @@ const App = ({ getAutoLogin }) => {
           <Route exact path='/parent-dashboard' component={ParentDashboard} />
           <Route exact path='/post-job' component={CreateJobPost} />
           <Route exact path='/job-listings' component={JobListings} />
+          <Route exact path='/all-jobs' component={AllJobs} />
         </Switch>
       </div>
     </div>
