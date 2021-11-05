@@ -38,6 +38,9 @@ const JobCard = ({ job }) => {
                     title={job.title}
                     sx={{ textTransform: 'uppercase' }}
                 />
+                <Typography>
+
+                </Typography>
                 <Divider />
                 <CardContent>
                     <Typography variant='body1' sx={{ color: purple[800] }}>
