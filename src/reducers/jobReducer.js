@@ -1,6 +1,6 @@
 const initialState = {
     jobs: '',
-    error: '',
+    error: ''
 }
 
 const jobData = (state = initialState, action) => {
@@ -8,6 +8,8 @@ const jobData = (state = initialState, action) => {
         case 'POST_JOB':
             return { jobs: [...state.jobs, action.payload] }
         case 'GET_JOB_LISTINGS':
+            return { ...state, jobs: action.payload }
+        case 'GET_ALL_JOBS':
             return { ...state, jobs: action.payload }
         default:
             return state
