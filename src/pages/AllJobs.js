@@ -8,7 +8,7 @@ import { Chip, Grid, Typography } from '@mui/material'
 import { purple } from '@mui/material/colors'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 
-const AllJobs = ({ getAllJobs, jobData, userData }) => {
+const AllJobs = ({ getAllJobs, jobData, userData, parentData }) => {
 
     useEffect(() => {
         getAllJobs()
@@ -17,7 +17,7 @@ const AllJobs = ({ getAllJobs, jobData, userData }) => {
     let jobCard
 
     if (jobData.jobs) {
-        jobCard = jobData.jobs.map((j, index) => <JobCard key={index} job={j} />)
+        jobCard = jobData.jobs.map((j, index) => <JobCard userData={userData} key={index} job={j} parentData={parentData} />)
     }
 
     return (
@@ -38,7 +38,8 @@ const AllJobs = ({ getAllJobs, jobData, userData }) => {
 
 const mapStateToProps = state => ({
     userData: state.userData,
-    jobData: state.jobData
+    jobData: state.jobData,
+    parentData: state.parentData
 })
 
 const mapDispatchToProps = {
@@ -48,7 +49,8 @@ const mapDispatchToProps = {
 AllJobs.propTypes = {
     getAllJobs: PropTypes.func.isRequired,
     jobData: PropTypes.instanceOf(Object).isRequired,
-    userData: PropTypes.instanceOf(Object).isRequired
+    userData: PropTypes.instanceOf(Object).isRequired,
+    parentData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllJobs)
