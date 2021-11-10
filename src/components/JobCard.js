@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import {
-    Card, CardActions, CardContent, CardHeader, Collapse,
-    Divider, Grid, IconButton, Typography
+    Button, Card, CardActions, CardContent, CardHeader, Collapse,
+    Divider, Grid, IconButton, Stack, Typography
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
@@ -41,6 +41,14 @@ const JobCard = ({ job, userName, parentData, userData }) => {
         if (userData.userType === 'parent') return userName
     }
 
+    const renderRequest = () => {
+        if (userData.userType === 'caregiver') return (
+            <Button href='#job-request' variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
+                Request Job
+            </Button>
+        )
+    }
+
     return (
         <Grid item xs={12} sm={6} md={4} >
             <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, bgcolor: purple[50], color: cyan[600] }}>
@@ -61,13 +69,14 @@ const JobCard = ({ job, userName, parentData, userData }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing sx={{ marginTop: 'auto', ml: 1 }}>
-                    {renderDriver()}
+                    {renderRequest()}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label='show more'
                     >
+                        {renderDriver()}
                         <Typography sx={{ textTransform: 'uppercase', fontSize: 12 }}>View details</Typography>
                         <ExpandMoreIcon />
                     </ExpandMore>
