@@ -20,7 +20,6 @@ const JobListings = ({ getJobListings, jobData, userData, parentData }) => {
         jobCard = jobData.jobs.map((j, index) => <JobCard userData={userData} userName={userData.user.parent.first_name} parentData={parentData} key={index} job={j} />)
     }
 
-    console.log(jobData)
     return (
         <>
             <AppDashboard userData={userData} />
