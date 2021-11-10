@@ -43,7 +43,7 @@ const JobCard = ({ job, userName, parentData, userData }) => {
 
     const renderRequest = () => {
         if (userData.userType === 'caregiver') return (
-            <Button href='#job-request' variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
+            <Button href='/job-request' variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
                 Request Job
             </Button>
         )
