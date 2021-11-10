@@ -12,6 +12,7 @@ import ParentDashboard from './pages/ParentDashboard'
 import CreateJobPost from './pages/CreateJobPost'
 import JobListings from './pages/JobListings'
 import AllJobs from './pages/AllJobs'
+import JobRequest from './pages/JobRequest'
 
 const App = ({ getAutoLogin }) => {
   const usertype = localStorage.getItem('usertype')
@@ -37,6 +38,7 @@ const App = ({ getAutoLogin }) => {
           <Route exact path='/post-job' component={CreateJobPost} />
           <Route exact path='/job-listings' component={JobListings} />
           <Route exact path='/all-jobs' component={AllJobs} />
+          <Route exact path='/job-request' component={JobRequest} />
         </Switch>
       </div>
     </div>
