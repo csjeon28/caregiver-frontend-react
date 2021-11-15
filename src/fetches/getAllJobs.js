@@ -10,6 +10,7 @@ function getAllJobs() {
                 headers: HEADERS
             })
             .then(resp => dispatch(action.getAllJobs(resp.data)))
+            .catch(error => dispatch(action.jobFail(error)))
     }
 }
 
