@@ -1,7 +1,3 @@
-export const getCaregiversLoading = () => ({
-    type: 'GET_CAREGIVERS_LOADING',
-})
-
 export const getCaregivers = data => ({
     type: 'GET_CAREGIVERS',
     payload: data,
