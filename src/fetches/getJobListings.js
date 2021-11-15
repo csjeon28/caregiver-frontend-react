@@ -10,6 +10,7 @@ function getJobListings(parentId) {
                 headers: HEADERS
             })
             .then(resp => dispatch(action.getJobListings(resp.data)))
+            .catch(error => dispatch(action.jobFail(error)))
     }
 }
 
