@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import { pink, purple, cyan, blue } from '@mui/material/colors'
-import postJobRequests from '../fetches/postJobRequests'
+import postJobRequest from '../fetches/postJobRequest'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -36,7 +36,7 @@ const style = {
     pb: 3,
 }
 
-const JobCard = ({ job, userName, parentData, userData, postJobRequests }) => {
+const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
     const history = useHistory()
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -70,7 +70,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequests }) => {
         const candidateObject = {
             candidate: { job_id: job.id }
         }
-        postJobRequests(candidateObject, userData.user.caregiver.id)
+        postJobRequest(candidateObject, userData.user.caregiver.id)
         history.push('/requested-jobs')
     }
 
@@ -82,7 +82,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequests }) => {
                 </Button>
                 <Modal open={open} onClose={handleClose}>
                     <Box sx={{ ...style, width: 400, borderRadius: 4 }}>
-                        <Typography sx={{ mb: 2, color: purple[800], textTransform: 'uppercase' }}>Request job from {parentName}</Typography>
+                        <Typography sx={{ mb: 2, color: purple[800], textTransform: 'uppercase' }}>Request {job.title} job from {parentName}</Typography>
                         <Button onClick={handleJobButton} variant='outlined' size='small' sx={{ color: pink[100], bgcolor: purple[800] }}>Request Job</Button>
                         <Button onClick={handleClose} sx={{ color: purple[400] }}>Cancel</Button>
                     </Box>
@@ -138,17 +138,18 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequests }) => {
 }
 
 const mapStateToProps = state => ({
-    userData: state.userData
+    userData: state.userData,
+    jobData: state.jobData
 })
 
 const mapDispatchToProps = {
-    postJobRequests
+    postJobRequest
 }
 
 JobCard.propTypes = {
     job: PropTypes.instanceOf(Object).isRequired,
     parentData: PropTypes.instanceOf(Object).isRequired,
-    postJobRequests: PropTypes.func,
+    postJobRequest: PropTypes.func,
     userData: PropTypes.instanceOf(Object),
     userName: PropTypes.string
 }
