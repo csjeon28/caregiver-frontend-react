@@ -46,7 +46,7 @@ const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
                 Welcome back {welcomeName}&nbsp;!
             </Typography>
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: purple[700], color: 'white' }}>
-                Browse Parents:
+                Meet the Parents/Guardians:
             </Typography>
             <Grid container spacing={3} sx={{ padding: '2em' }}>
                 {parentCard}

@@ -10,6 +10,7 @@ import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
+import Notifications from '../components/Notifications'
 
 const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     const usertoken = localStorage.getItem('token')
@@ -49,8 +50,9 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
             </Typography>
+            <Notifications />
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: cyan[700], color: 'white' }}>
-                Browse Caregivers:
+                Meet the Caregivers:
             </Typography>
             <Grid container spacing={3} sx={{ padding: '2em' }}>
                 {caregiverCard}
