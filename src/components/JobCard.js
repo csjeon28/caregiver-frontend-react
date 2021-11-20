@@ -49,13 +49,12 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
         if (job.required_to_drive) return <DriveEtaIcon sx={{ color: blue[400] }} />
     }
 
-    const parentName = parentData.parents.map(n => {
-        if (n.id === job.parent_id) return n.first_name
-        return null
-    })
-
     const renderParentName = () => {
-        if (userData.userType === 'caregiver') return parentName
+        if (userData.userType === 'caregiver') return (
+            parentData.parents.map(n => {
+                if (n.id === job.parent_id) return n.first_name
+                return null
+            }))
         if (userData.userType === 'parent') return userName
     }
 
@@ -82,7 +81,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                 </Button>
                 <Modal open={open} onClose={handleClose}>
                     <Box sx={{ ...style, width: 400, borderRadius: 4 }}>
-                        <Typography sx={{ mb: 2, color: purple[800], textTransform: 'uppercase' }}>Request {job.title} job from {parentName}</Typography>
+                        <Typography sx={{ mb: 2, color: purple[800], textTransform: 'uppercase' }}>Request {job.title} job from {renderParentName()}?</Typography>
                         <Button onClick={handleJobButton} variant='outlined' size='small' sx={{ color: pink[100], bgcolor: purple[800] }}>Request Job</Button>
                         <Button onClick={handleClose} sx={{ color: purple[400] }}>Cancel</Button>
                     </Box>
@@ -90,6 +89,14 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
             </>
         )
     }
+
+    // const renderCandidates = () => {
+    //     if (userData.userType === 'parent') return (
+    //         <>
+    //             <Chip>Job Requests</Chip>
+    //         </>
+    //     )
+    // }
 
     return (
         <Grid item xs={12} sm={6} md={4} >
@@ -139,7 +146,8 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
 
 const mapStateToProps = state => ({
     userData: state.userData,
-    jobData: state.jobData
+    jobData: state.jobData,
+    parentData: state.parentData
 })
 
 const mapDispatchToProps = {
