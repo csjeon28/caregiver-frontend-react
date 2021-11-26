@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import {
-    Box, Button, Card, CardActions, CardContent, CardHeader, Collapse,
-    Divider, Grid, IconButton, Modal, Typography
+    Box, Button, Card, CardActions, CardContent, CardHeader,
+    Collapse, Divider, Grid, IconButton, Modal, Typography
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
-import { pink, purple, cyan, blue } from '@mui/material/colors'
+import { pink, purple, cyan, blue, grey } from '@mui/material/colors'
 import postJobRequest from '../fetches/postJobRequest'
+import JobCandidates from './JobCandidates'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -31,12 +32,13 @@ const style = {
     width: 400,
     bgcolor: pink[50],
     boxShadow: 24,
-    pt: 3,
+    pt: 5,
     px: 3,
-    pb: 3,
+    pb: 12,
 }
 
 const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
+
     const history = useHistory()
     const [expanded, setExpanded] = useState(false)
     const [open, setOpen] = useState(false)
@@ -90,13 +92,30 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
         )
     }
 
-    // const renderCandidates = () => {
-    //     if (userData.userType === 'parent') return (
-    //         <>
-    //             <Chip>Job Requests</Chip>
-    //         </>
-    //     )
-    // }
+    const renderCandidates = () => {
+        if (userData.userType === 'parent') {
+            if (job.candidates !== '') return (
+                <>
+                    <Button onClick={handleOpen} variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
+                        View Applicants
+                    </Button>
+                    <Modal open={open} onClose={handleClose}>
+                        <Box sx={{ ...style, width: 400, borderRadius: 4 }}>
+                            <Typography sx={{ mb: 2, mt: -1, color: purple[800], fontWeight: 800, letterSpacing: 2, fontSize: 20, textTransform: 'uppercase' }}>Job Candidates:</Typography>
+                            <Typography sx={{ mb: 2, mt: -1, color: grey[700], fontSize: 12 }}>Click Caregiver to View Profile</Typography>
+                            {job.candidates.map((c, index) => {
+                                if (c.caregiver) return <JobCandidates key={index} candidates={c.caregiver} applicant={c} />
+                                return null
+                            })}
+                            <br />
+                            <Button onClick={handleClose} sx={{ color: purple[400] }}>Go back</Button>
+                        </Box>
+                    </Modal>
+                </>
+            )
+            return null
+        }
+    }
 
     return (
         <Grid item xs={12} sm={6} md={4} >
@@ -118,6 +137,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing sx={{ marginTop: 'auto', ml: 1 }}>
+                    {renderCandidates()}
                     {renderRequest()}
                     <ExpandMore
                         expand={expanded}
