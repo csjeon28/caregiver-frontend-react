@@ -32,3 +32,12 @@ export const getJobRequests = data => ({
     type: 'GET_JOB_REQUESTS',
     payload: data
 })
+
+// export const removeCandidate = () => ({
+//     type: 'REMOVE_CANDIDATE'
+// })
+
+export const patchJob = data => ({
+    type: 'PATCH_JOB',
+    payload: data
+})
