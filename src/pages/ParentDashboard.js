@@ -10,7 +10,6 @@ import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
-import Notifications from '../components/Notifications'
 
 const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     const usertoken = localStorage.getItem('token')
@@ -50,7 +49,6 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
             </Typography>
-            <Notifications />
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: cyan[700], color: 'white' }}>
                 Meet the Caregivers:
             </Typography>
@@ -64,7 +62,7 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
 const mapStateToProps = state => ({
     caregivers: state.caregiverData.caregivers,
     error: state.caregiverData.error,
-    userData: state.userData,
+    userData: state.userData
 })
 
 const mapDispatchToProps = {
@@ -75,7 +73,7 @@ ParentDashboard.propTypes = {
     caregivers: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired,
     error: PropTypes.string.isRequired,
     getCaregivers: PropTypes.func.isRequired,
-    userData: PropTypes.instanceOf(Object).isRequired,
+    userData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParentDashboard)
