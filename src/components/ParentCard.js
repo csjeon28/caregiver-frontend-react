@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import PetsIcon from '@mui/icons-material/Pets'
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone'
-import { purple, cyan, amber } from '@mui/material/colors'
+import { deepPurple, purple, cyan, amber } from '@mui/material/colors'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props
@@ -38,25 +38,20 @@ const ParentCard = ({ parent }) => {
 
     return (
         <Grid item xs={12} sm={6} md={4} >
-            <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, color: purple[300], bgcolor: cyan[100] }}>
+            <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, color: purple[400], bgcolor: cyan[50] }}>
                 <CardHeader
                     title={parent.first_name}
                     sx={{ textTransform: 'uppercase' }}
                 />
                 <Divider />
                 <CardContent>
-                    <Typography variant='body1' sx={{ color: purple[500] }}>
+                    <Typography variant='body1' sx={{ color: purple[200], fontSize: 14 }}>
                         {parent.bio}
                     </Typography>
                 </CardContent>
-
                 <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
-                    {/* //figure out how to link matching a job with parents */}
-                    {/* <Button variant='contained' sx={{ bgcolor: cyan[300] }}> */}
-                    {/* <Link href={`/${parent.id}/match-job`}>Interested?</Link> */}
-                    {/* </Button> */}
                     &nbsp;&nbsp;
-                    <LocationOnTwoToneIcon />
+                    <LocationOnTwoToneIcon sx={{ color: deepPurple[200] }} />
                     <Typography variant='body1' color='text.secondary'>
                         {parent.city}, {parent.state}
                     </Typography>
