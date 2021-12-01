@@ -67,12 +67,8 @@ const ParentCard = ({ parent }) => {
                 <Collapse in={expanded} timeout='auto' unmountOnExit>
                     <CardContent>
                         <Typography variant='body2' color='text.secondary'>
-                            Language(s) Spoken: &nbsp;{parent.language}
-                        </Typography>
-                        <Typography variant='body2' color='text.secondary'>
-                            Number of Children: &nbsp;{parent.number_of_children}
-                        </Typography>
-                        <Typography variant='body2' color='text.secondary'>
+                            Language(s) Spoken: &nbsp;{parent.language}<br />
+                            Number of Children: &nbsp;{parent.number_of_children}<br />
                             Hourly Rate: &nbsp;${parent.hourly_rate} / hour
                         </Typography>
                         {renderSmoker()}
