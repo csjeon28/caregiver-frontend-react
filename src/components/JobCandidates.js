@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
+import patchJob from '../fetches/patchJob'
 import {
     Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Modal, Typography
 } from '@mui/material'
@@ -20,14 +22,25 @@ const style = {
     pb: 3,
 }
 
-const JobCandidates = ({ candidates, applicant, caregivers }) => {
+const JobCandidates = ({ candidates, applicant, caregivers, userData, jobId, patchJob }) => {
+    const history = useHistory()
     const [open, setOpen] = useState(false)
 
     const handleOpen = () => {
         setOpen(true)
     }
+
     const handleClose = () => {
         setOpen(false)
+    }
+
+    const handleAccept = () => {
+        const selectedCand = {
+            job_id: jobId,
+            caregiver_id: applicant.caregiver_id
+        }
+        patchJob(selectedCand, userData.user.parent.id)
+        history.push('/parent-dashboard')
     }
 
     return (
@@ -39,13 +52,12 @@ const JobCandidates = ({ candidates, applicant, caregivers }) => {
                 <Box sx={{ ...style, width: 400, borderRadius: 4 }}>
                     <Grid item xs={12} >
                         <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, bgcolor: deepPurple[50] }}>
-                            {caregivers.map(c => {
+                            {caregivers.map((c, index) => {
                                 if (applicant.caregiver_id === c.id) return (
-                                    <>
+                                    <div key={index}>
                                         <CardHeader
-                                            key={c.id}
                                             title={c.first_name}
-                                            sx={{ textTransform: 'uppercase', color: cyan[500] }}
+                                            sx={{ textTransform: 'uppercase', color: cyan[600] }}
                                         />
                                         <Typography variant='body1' color='text.secondary' align='right' sx={{ mt: -3, mr: 1 }}>
                                             <LocationOnTwoToneIcon sx={{ fontSize: 24 }} /> {c.city}, {c.state}
@@ -63,12 +75,11 @@ const JobCandidates = ({ candidates, applicant, caregivers }) => {
                                                 Hourly Rate: &nbsp;${c.hourly_rate} / hour
                                             </Typography>
                                         </CardActions>
-                                    </>
+                                    </div>
                                 )
                                 return null
                             })}
-                            <Button>Accept</Button>
-                            <Button>Decline</Button>
+                            <Button onClick={handleAccept}>Accept</Button>
                             <Button onClick={handleClose} sx={{ color: purple[400] }}>Go back</Button>
                         </Card>
                     </Grid>
@@ -80,11 +91,18 @@ const JobCandidates = ({ candidates, applicant, caregivers }) => {
 
 const mapStateToProps = state => ({
     caregivers: state.caregiverData.caregivers,
+    userData: state.userData
 })
 
+const mapDispatchToProps = {
+    patchJob
+}
+
 JobCandidates.propTypes = {
-    caregivers: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)])
+    caregivers: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]),
+    patchJob: PropTypes.func.isRequired,
+    userData: PropTypes.instanceOf(Object)
 }
 
 
-export default connect(mapStateToProps)(JobCandidates)
+export default connect(mapStateToProps, mapDispatchToProps)(JobCandidates)
