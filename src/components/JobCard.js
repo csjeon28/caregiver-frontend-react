@@ -94,7 +94,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
 
     const renderCandidates = () => {
         if (userData.userType === 'parent') {
-            if (job.candidates !== '') return (
+            if (job.caregiver_id === null) return (
                 <>
                     <Button onClick={handleOpen} variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
                         View Applicants
@@ -104,7 +104,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                             <Typography sx={{ mb: 2, mt: -1, color: purple[800], fontWeight: 800, letterSpacing: 2, fontSize: 20, textTransform: 'uppercase' }}>Job Candidates:</Typography>
                             <Typography sx={{ mb: 2, mt: -1, color: grey[700], fontSize: 12 }}>Click Caregiver to View Profile</Typography>
                             {job.candidates.map((c, index) => {
-                                if (c.caregiver) return <JobCandidates key={index} candidates={c.caregiver} applicant={c} />
+                                if (c.caregiver) return <JobCandidates key={index} jobId={job.id} candidates={c.caregiver} applicant={c} />
                                 return null
                             })}
                             <br />
@@ -113,54 +113,83 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                     </Modal>
                 </>
             )
+            if (job.caregiver_id !== null) return (
+                <>
+                    <Card sx={{ bgcolor: purple[100], padding: 1, textAlign: 'center' }}>
+                        <Typography sx={{ textTransform: 'uppercase', color: blue[600], fontSize: 18, ml: 1 }}>Job Taken by:&nbsp;</Typography>
+                        {job.candidates.map(c => {
+                            if (c.caregiver.id === job.caregiver_id) return (<Typography sx={{ fontSize: 17, letterSpacing: 1, color: cyan[800] }}>{c.caregiver.first_name} {c.caregiver.last_name}</Typography>)
+                            return null
+                        })}
+                    </Card>
+                </>
+            )
             return null
         }
     }
 
-    return (
-        <Grid item xs={12} sm={6} md={4} >
-            <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, bgcolor: purple[50], color: cyan[600] }}>
-                <CardHeader
-                    title={job.title}
-                    sx={{ textTransform: 'uppercase' }}
-                />
-                <Divider />
-                <Typography component='span' variant='body1' align='left' sx={{ boxShadow: 2, padding: 0.7, color: cyan[800], mr: 2, ml: 2, fontSize: 13 }}>
-                    Posted by:
-                    <Typography variant='body2' sx={{ color: pink[200], textTransform: 'uppercase', fontSize: 13, letterSpacing: 1 }}>
-                        {renderParentName()}
-                    </Typography>
+    let jobCardContent = (
+        <>
+            <CardHeader
+                title={job.title}
+                sx={{ textTransform: 'uppercase' }}
+            />
+            <Divider />
+            <Typography component='span' variant='body1' align='left' sx={{ boxShadow: 2, padding: 0.7, color: cyan[800], mr: 2, ml: 2, fontSize: 13 }}>
+                Posted by:
+                <Typography variant='body2' sx={{ color: pink[200], textTransform: 'uppercase', fontSize: 13, letterSpacing: 1 }}>
+                    {renderParentName()}
                 </Typography>
+            </Typography>
+            <CardContent>
+                <Typography variant='body1' sx={{ color: purple[800] }}>
+                    {job.job_description}
+                </Typography>
+            </CardContent>
+            <CardActions disableSpacing sx={{ marginTop: 'auto', ml: 1 }}>
+                {renderCandidates()}
+                {renderRequest()}
+                <ExpandMore
+                    expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label='show more'
+                >
+                    {renderDriver()}
+                    <Typography sx={{ textTransform: 'uppercase', fontSize: 12 }}>View details</Typography>
+                    <ExpandMoreIcon />
+                </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout='auto' unmountOnExit>
                 <CardContent>
-                    <Typography variant='body1' sx={{ color: purple[800] }}>
-                        {job.job_description}
+                    <Typography variant='body2' color='text.secondary'>
+                        Pay Rate: &nbsp; ${job.hourly_rate} / hour<br />
+                        Number of Children: {job.number_of_children}<br />
+                        Days Needed: {job.specific_days_needed}
                     </Typography>
                 </CardContent>
-                <CardActions disableSpacing sx={{ marginTop: 'auto', ml: 1 }}>
-                    {renderCandidates()}
-                    {renderRequest()}
-                    <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label='show more'
-                    >
-                        {renderDriver()}
-                        <Typography sx={{ textTransform: 'uppercase', fontSize: 12 }}>View details</Typography>
-                        <ExpandMoreIcon />
-                    </ExpandMore>
-                </CardActions>
-                <Collapse in={expanded} timeout='auto' unmountOnExit>
-                    <CardContent>
-                        <Typography variant='body2' color='text.secondary'>
-                            Pay Rate: &nbsp;${job.hourly_rate} / hour<br />
-                            Number of Children: {job.number_of_children}<br />
-                            Days Needed: {job.specific_days_needed}
-                        </Typography>
-                    </CardContent>
-                </Collapse>
-            </Card>
-        </Grid>
+            </Collapse>
+        </>
+    )
+
+    return (
+        <Grid item xs={12} sm={6} md={4} >
+            {job.caregiver_id !== null ?
+                <Card sx={{
+                    minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5,
+                    bgcolor: cyan[50], color: purple[200], border: 2, borderColor: purple[100], filter: 'opacity(60%)'
+                }}>
+                    {jobCardContent}
+                </Card>
+                :
+                <Card sx={{
+                    minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5,
+                    bgcolor: purple[50], color: cyan[600]
+                }}>
+                    {jobCardContent}
+                </Card>
+            }
+        </Grid >
     )
 }
 
