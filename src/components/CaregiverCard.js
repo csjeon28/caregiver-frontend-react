@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import {
@@ -57,10 +56,6 @@ const CaregiverCard = ({ caregiver }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing sx={{ marginTop: 'auto' }}>
-                    {/* <Button component={Link} variant='contained' sx={{ bgcolor: purple[100] }}> */}
-                    {/* //figure out how to link matching a job with caregivers */}
-                    {/* <Link to={`/${caregiver.id}/match-job`}>Match</Link> */}
-                    {/* </Button> */}
                     &nbsp;&nbsp;
                     <LocationOnTwoToneIcon />
                     <Typography variant='body1' color='text.secondary'>
