@@ -51,7 +51,7 @@ const CaregiverCard = ({ caregiver }) => {
                 />
                 <Divider />
                 <CardContent>
-                    <Typography variant='body1' sx={{ color: purple[800] }}>
+                    <Typography variant='body1' sx={{ color: purple[800], fontSize: 15 }}>
                         {caregiver.bio}
                     </Typography>
                 </CardContent>
@@ -73,10 +73,9 @@ const CaregiverCard = ({ caregiver }) => {
                 <Collapse in={expanded} timeout='auto' unmountOnExit>
                     <CardContent>
                         <Typography variant='body2' color='text.secondary'>
-                            Language(s) Spoken: &nbsp;{caregiver.language}
-                        </Typography>
-                        <Typography variant='body2' color='text.secondary'>
-                            Hourly Rate: &nbsp;${caregiver.hourly_rate} / hour
+                            Language(s) Spoken: &nbsp;{caregiver.language}<br />
+                            Hourly Rate: &nbsp;${caregiver.hourly_rate} / hour<br />
+                            Email: &nbsp;{caregiver.email}
                         </Typography>
                         {renderSmoker()}
                         {renderDriver()}
