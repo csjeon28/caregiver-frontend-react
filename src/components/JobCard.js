@@ -117,8 +117,8 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                 <>
                     <Card sx={{ bgcolor: purple[100], padding: 1, textAlign: 'center' }}>
                         <Typography sx={{ textTransform: 'uppercase', color: blue[600], fontSize: 18, ml: 1 }}>Job Taken by:&nbsp;</Typography>
-                        {job.candidates.map(c => {
-                            if (c.caregiver.id === job.caregiver_id) return (<Typography sx={{ fontSize: 17, letterSpacing: 1, color: cyan[800] }}>{c.caregiver.first_name} {c.caregiver.last_name}</Typography>)
+                        {job.candidates.map((c, index) => {
+                            if (c.caregiver.id === job.caregiver_id) return (<Typography key={index} sx={{ fontSize: 17, letterSpacing: 1, color: cyan[800] }}>{c.caregiver.first_name} {c.caregiver.last_name}</Typography>)
                             return null
                         })}
                     </Card>
@@ -174,7 +174,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
 
     return (
         <Grid item xs={12} sm={6} md={4} >
-            {job.caregiver_id !== null ?
+            {job.caregiver_id !== null && userData.userType === 'parent' ?
                 <Card sx={{
                     minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5,
                     bgcolor: cyan[50], color: purple[200], border: 2, borderColor: purple[100], filter: 'opacity(60%)'
