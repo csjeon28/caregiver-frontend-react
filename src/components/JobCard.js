@@ -93,8 +93,8 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
     }
 
     const renderCandidates = () => {
-        if (userData.userType === 'parent') {
-            if (job.caregiver_id === null) return (
+        if (job.candidates) {
+            if (userData.userType === 'parent' && job.caregiver_id === null) return (
                 <>
                     <Button onClick={handleOpen} variant='outlined' size='small' sx={{ bgcolor: pink[50], color: purple[800] }}>
                         View Applicants
@@ -113,7 +113,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
                     </Modal>
                 </>
             )
-            if (job.caregiver_id !== null) return (
+            if (userData.userType === 'parent' && job.caregiver_id !== null) return (
                 <>
                     <Card sx={{ bgcolor: purple[100], padding: 1, textAlign: 'center' }}>
                         <Typography sx={{ textTransform: 'uppercase', color: blue[600], fontSize: 18, ml: 1 }}>Job Taken by:&nbsp;</Typography>
