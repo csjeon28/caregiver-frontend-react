@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import ParentCard from '../components/ParentCard'
 import getParents from '../fetches/getParents'
-import { Chip, Grid, Typography } from '@mui/material'
-import { purple } from '@mui/material/colors'
+import { Button, Chip, Grid, Typography } from '@mui/material'
+import { purple, cyan } from '@mui/material/colors'
 import AppDashboard from '../components/AppDashboard'
 import PetsIcon from '@mui/icons-material/Pets'
 import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 
 const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
     const usertoken = localStorage.getItem('token')
-
+    const history = useHistory()
     useEffect(() => {
         if (usertoken) {
             getParents()
@@ -45,6 +46,7 @@ const CaregiverDashboard = ({ parents, error, getParents, userData }) => {
                 sx={{ ml: 4, color: purple[700], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
             </Typography>
+            <Button onClick={() => history.push('/all-jobs')} sx={{ border: 1, borderRadius: 3, ml: 4, mt: 1, color: cyan[300] }}>View Available Jobs</Button>
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: purple[700], color: 'white' }}>
                 Meet the Parents/Guardians:
             </Typography>

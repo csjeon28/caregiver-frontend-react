@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import AppDashboard from '../components/AppDashboard'
 import CaregiverCard from '../components/CaregiverCard'
 import getCaregivers from '../fetches/getCaregivers'
-import { Chip, Grid, Typography } from '@mui/material'
-import { cyan } from '@mui/material/colors'
+import { Button, Chip, Grid, Typography } from '@mui/material'
+import { cyan, purple } from '@mui/material/colors'
 import SmokingRoomsIcon from '@mui/icons-material/SmokingRooms'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
@@ -13,6 +14,7 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
 
 const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
     const usertoken = localStorage.getItem('token')
+    const history = useHistory()
 
     useEffect(() => {
         if (usertoken) {
@@ -49,6 +51,7 @@ const ParentDashboard = ({ caregivers, error, getCaregivers, userData }) => {
                 sx={{ ml: 4, color: cyan[800], flexGrow: 1, fontFamily: 'Cabin Sketch', fontSize: 28, fontStyle: 'italic', letterSpacing: 3 }}>
                 Welcome back {welcomeName}&nbsp;!
             </Typography>
+            <Button onClick={() => history.push('/job-listings')} sx={{ border: 1, borderRadius: 3, ml: 4, mt: 1, color: purple[200] }}>View Job Listings</Button>
             <Typography sx={{ mt: 2, ml: 4, mr: 4, mb: -7, fontSize: 20, fontVariantCaps: 'small-caps', bgcolor: cyan[700], color: 'white' }}>
                 Meet the Caregivers:
             </Typography>

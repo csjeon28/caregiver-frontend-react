@@ -15,7 +15,7 @@ import { cyan, purple } from '@mui/material/colors'
 
 const theme = createTheme()
 
-const CreateJobPost = ({ postJob, user, userData }) => {
+const CreateJobPost = ({ postJob, user, userData, jobData }) => {
     const history = useHistory()
     const [job, setJob] = useState({
         number_of_children: '',
@@ -40,7 +40,7 @@ const CreateJobPost = ({ postJob, user, userData }) => {
         const jobObject = { [type]: job }
         postJob(jobObject, user.parent.id)
         setJob(job)
-        history.push('/job-listings')
+        history.push('/parent-dashboard')
     }
 
     let personalizedJobForm = (
@@ -166,6 +166,7 @@ const CreateJobPost = ({ postJob, user, userData }) => {
 const mapStateToProps = state => ({
     user: state.userData.user,
     userData: state.userData,
+    jobData: state.jobData
 })
 
 const mapDispatchToProps = {
@@ -175,7 +176,8 @@ const mapDispatchToProps = {
 CreateJobPost.propTypes = {
     user: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.instanceOf(Object)]).isRequired,
     postJob: PropTypes.func.isRequired,
-    userData: PropTypes.instanceOf(Object).isRequired
+    userData: PropTypes.instanceOf(Object).isRequired,
+    jobData: PropTypes.instanceOf(Object).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJobPost)
