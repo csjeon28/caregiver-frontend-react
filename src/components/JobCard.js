@@ -72,7 +72,7 @@ const JobCard = ({ job, userName, parentData, userData, postJobRequest }) => {
             candidate: { job_id: job.id }
         }
         postJobRequest(candidateObject, userData.user.caregiver.id)
-        history.push('/requested-jobs')
+        history.push('/parent-dashboard')
     }
 
     const renderRequest = () => {
