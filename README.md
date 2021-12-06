@@ -16,13 +16,13 @@ An application where parents/guardians and babysitters can connect and view each
 * Caregivers can see if job request was accepted.
 
 ## Tech Used:
-### Frontend:
+### FRONTEND:
 * <a href="https://reactjs.org/" target="_blank">React JavaScript</a>
 * <a href="https://react-redux.js.org/" target="_blank">React Redux</a>
 * <a href="https://v5.reactrouter.com/web/guides/quick-start" target="_blank">React Router</a>
 * <a href="https://axios-http.com/docs/intro" target="_blank">Axios</a>
 * <a href="https://mui.com/getting-started/usage/" target="_blank">MUI</a>
-### Backend:
+### BACKEND:
 * <a href="https://guides.rubyonrails.org/" target="_blank">Ruby on Rails</a> API-only backend framework [Ruby 2.7.4 & Rails 6.1.4]
 * <a href="https://jwt.io/" target="_blank">Json Web Tokens (JWT)</a> for user authorization and authentication.
 * <a href="https://www.npmjs.com/package/bcrypt" target="_blank">BCrypt</a> gem for password/encryption/security
@@ -30,8 +30,8 @@ An application where parents/guardians and babysitters can connect and view each
 
 ## Deployment 
 #### This application has been deployed to Heroku using <a href="https://create-react-app.dev/docs/getting-started/" target="_blank">Create-React-App</a> buildpack for the frontend. 
-#### <a href="https://caregiver-frontend-react.herokuapp.com/" target="_blank">Frontend</a>
-#### <a href="https://caregiver-backend-rails.herokuapp.com/" target="_blank">Backend</a>
+### <a href="https://caregiver-frontend-react.herokuapp.com/" target="_blank">Frontend</a>
+### <a href="https://caregiver-backend-rails.herokuapp.com/" target="_blank">Backend</a>
 
 ## Instructions to Install and Use the application
 ### BACKEND Installation:
