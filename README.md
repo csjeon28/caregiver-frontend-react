@@ -15,7 +15,7 @@ An application where parents/guardians and babysitters can connect and view each
 * Parents can accept job requests by caregivers
 * Caregivers can see if job request was accepted.
 
-<img src="../src/images/caregiver_welcome_page.jpeg" alt="Welcome Page">
+<img src="/src/images/caregiver_welcome_page.jpeg" alt="Welcome Page">
 
 ## Tech Used:
 ### FRONTEND:
