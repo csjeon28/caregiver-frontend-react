@@ -52,5 +52,4 @@ An application where parents/guardians and babysitters can connect and view each
 3. Run `npm install` to install all dependencies
 4. Run `npm start` to start server
 
-#### | <a href="https://github.com/csjeon28/caregiver-backend-rails" target="_blank">Backend Repo</a> | 
-#### <a href="https://www.dropbox.com/s/1mnqjtel3n41mot/Phase%205%20Capstone%20Project%20Screen%20recording.mov?dl=0" target="_blank">Project Demo</a>
+#### | <a href="https://github.com/csjeon28/caregiver-backend-rails" target="_blank">Backend Repo</a> | <a href="https://www.dropbox.com/s/1mnqjtel3n41mot/Phase%205%20Capstone%20Project%20Screen%20recording.mov?dl=0" target="_blank">Project Demo</a>
