@@ -131,7 +131,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                         onChange={handleChange}
                                         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
                                         label='Hourly Rate'
-                                        inputProps={{ min: 0, step: 5 }}
+                                        inputProps={{ min: 0, step: 5, max: 50 }}
                                     />
                                 </FormControl>
                             </Grid>

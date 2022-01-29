@@ -141,7 +141,7 @@ const ParentSignup = ({ userSignup, userData }) => {
                                         onChange={handleChange}
                                         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
                                         label='Hourly Rate'
-                                    // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                                        inputProps={{ min: 0, step: 5 }}
                                     />
                                 </FormControl>
                             </Grid>
@@ -164,6 +164,7 @@ const ParentSignup = ({ userSignup, userData }) => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                required
                                     fullWidth
                                     id='bio'
                                     multiline
