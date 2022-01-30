@@ -96,6 +96,7 @@ const CreateJobPost = ({ postJob, user, userData, jobData }) => {
                                         onChange={handleChange}
                                         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
                                         label='Hourly Rate'
+                                        inputProps={{ min: 0, step: 5 }}
                                     />
                                 </FormControl>
                             </Grid>
