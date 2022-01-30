@@ -110,7 +110,7 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                     onChange={handleChange}
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={7}>
+                            <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     name='date_of_birth'
@@ -121,16 +121,18 @@ const CaregiverSignup = ({ userSignup, userData }) => {
                                     onChange={handleChange}
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={5}>
-                                <FormControl required variant='outlined'>
+                            <Grid item xs={12} sm={6}>
+                            <FormControl required variant='outlined'>
                                     <InputLabel>Hourly Rate</InputLabel>
                                     <OutlinedInput
                                         id='hourly_rate'
                                         name='hourly_rate'
                                         type='number'
+                                        value={user.hourly_rate}
                                         onChange={handleChange}
                                         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
-                                        inputProps={{ min: 0, step: 5, max: 50 }}
+                                        label='Hourly Rate'
+                                        inputProps={{ min: 0, step: 5}}
                                     />
                                 </FormControl>
                             </Grid>

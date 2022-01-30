@@ -92,6 +92,7 @@ const CreateJobPost = ({ postJob, user, userData, jobData }) => {
                                         id='hourly_rate'
                                         name='hourly_rate'
                                         type='number'
+                                        value={job.hourly_rate}
                                         onChange={handleChange}
                                         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
                                         label='Hourly Rate'
