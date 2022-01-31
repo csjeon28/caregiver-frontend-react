@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import deleteParent from '../fetches/deleteParent'
 import { styled } from '@mui/material/styles'
 import {
-    Card, CardActions, CardContent, CardHeader, Collapse,
+    Button, Card, CardActions, CardContent, CardHeader, Collapse,
     Divider, Grid, IconButton, Typography
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -23,6 +25,8 @@ const ExpandMore = styled((props) => {
 }))
 
 const ParentCard = ({ parent }) => {
+    const history = useHistory()
+
     const [expanded, setExpanded] = useState(false)
 
     const handleExpandClick = () => {
@@ -37,7 +41,7 @@ const ParentCard = ({ parent }) => {
     }
 
     const deleteBtn = () => {
-        deleteParent(userData.user.parent.id)
+        deleteParent(parent.id)
         history.push('/caregiver-dashboard')
     }
 
