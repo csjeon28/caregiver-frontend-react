@@ -36,6 +36,11 @@ const ParentCard = ({ parent }) => {
         if (parent.has_pets) return <PetsIcon sx={{ color: purple[400] }} />
     }
 
+    const deleteBtn = () => {
+        deleteParent(userData.user.parent.id)
+        history.push('/caregiver-dashboard')
+    }
+
     return (
         <Grid item xs={12} sm={6} md={4} >
             <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, color: purple[400], bgcolor: cyan[50] }}>
@@ -43,6 +48,7 @@ const ParentCard = ({ parent }) => {
                     title={parent.first_name}
                     sx={{ textTransform: 'uppercase' }}
                 />
+                <Button onClick={deleteBtn}>X</Button>
                 <Divider />
                 <CardContent>
                     <Typography variant='body1' sx={{ color: purple[200], fontSize: 14 }}>
