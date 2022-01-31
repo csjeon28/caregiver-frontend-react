@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import deleteParent from '../fetches/deleteParent'
 import { styled } from '@mui/material/styles'
 import {
-    Button, Card, CardActions, CardContent, CardHeader, Collapse,
+    Card, CardActions, CardContent, CardHeader, Collapse,
     Divider, Grid, IconButton, Typography
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -25,8 +23,6 @@ const ExpandMore = styled((props) => {
 }))
 
 const ParentCard = ({ parent }) => {
-    const history = useHistory()
-
     const [expanded, setExpanded] = useState(false)
 
     const handleExpandClick = () => {
@@ -40,15 +36,9 @@ const ParentCard = ({ parent }) => {
         if (parent.has_pets) return <PetsIcon sx={{ color: purple[400] }} />
     }
 
-    const deleteBtn = () => {
-        deleteParent(parent.id)
-        history.push('/caregiver-dashboard')
-    }
-
     return (
         <Grid item xs={12} sm={6} md={4} >
             <Card sx={{ minHeight: 240, height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 5, color: purple[400], bgcolor: cyan[50] }}>
-                <Button variant='outlined' size='small' onClick={deleteBtn}>DELETE</Button>
                 <CardHeader
                     title={parent.first_name}
                     sx={{ textTransform: 'uppercase' }}

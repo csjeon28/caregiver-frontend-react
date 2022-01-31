@@ -9,8 +9,6 @@ const parentData = (state = initialState, action) => {
             return { ...state, parents: action.payload }
         case 'GET_PARENTS_FAIL':
             return { ...state, error: action.payload, parents: '' }
-        case 'DELETE_PARENT':
-            return { ...state, parents: [...state.parents.filter(p => p.id !== action.deleteParent)] }
         default:
             return state
     }
