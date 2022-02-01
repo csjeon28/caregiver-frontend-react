@@ -1,6 +1,6 @@
 # CareGiver App
 
-An application where parents/guardians and babysitters can connect and view each others profiles to help those in need of childcare. There are two user types: parent/guardian and caregivers. Parents can post jobs, caregivers can request jobs from parents, and parents can accept their job request. 
+An application where parents/guardians and babysitters can connect and view each others profiles for childcare services. There are two user types: parent/guardian and caregivers. Parents can post jobs, caregivers can request jobs from parents, and parents can accept their job request. 
 
 <img src="/src/images/caregiver_welcome_page.jpg" alt="Welcome Page">
 
